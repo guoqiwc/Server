@@ -25,5 +25,15 @@ class Mysql {
 	public static function insert($sql) {
 		return self::$mysqli->query ( $sql );
 	}
+	
+	// 查询
+	public static function query($sql) {
+		return self::$mysqli->query ( $sql );
+	}
+	
+	// 大量查询
+	public static function queryLarge($sql) {
+		return self::$mysqli->query ( $sql, MYSQLI_USE_RESULT );
+	}
 }
 ?>
