@@ -13,7 +13,7 @@ class LoadingPage {
 				"EN" 
 		);
 		$mysql = Mysql::getInstence ();
-		$sql = "SELECT * FROM `t_title` WHERE";
+		$sql = "SELECT * FROM `t_loading_page` WHERE";
 		// 遍历语言数组
 		for($index = 0; $index < count ( $language ); ++ $index) {
 			$sql .= " `language` = '$language[$index]'";

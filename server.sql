@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50535
 File Encoding         : 65001
 
-Date: 2014-02-23 00:30:05
+Date: 2014-02-23 21:51:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,6 +34,29 @@ CREATE TABLE `t_error` (
 -- ----------------------------
 -- Records of t_error
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for t_loading_page
+-- ----------------------------
+DROP TABLE IF EXISTS `t_loading_page`;
+CREATE TABLE `t_loading_page` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `language` varchar(10) COLLATE utf8_bin DEFAULT '',
+  `index` int(10) DEFAULT '0',
+  `content` text COLLATE utf8_bin,
+  PRIMARY KEY (`id`),
+  KEY `index_language` (`language`),
+  KEY `index_language_index` (`language`,`index`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of t_loading_page
+-- ----------------------------
+INSERT INTO `t_loading_page` VALUES ('1', 'CN', '0', 0x4CE4B880E58FA5);
+INSERT INTO `t_loading_page` VALUES ('2', 'CN', '1', 0x4CE4BA8CE58FA5);
+INSERT INTO `t_loading_page` VALUES ('3', 'EN', '0', 0x4669727374);
+INSERT INTO `t_loading_page` VALUES ('4', 'EN', '1', 0x5365636F6E64);
+INSERT INTO `t_loading_page` VALUES ('5', 'CN', '2', 0x4CE4B889E58FA5);
 
 -- ----------------------------
 -- Table structure for t_login
@@ -65,7 +88,8 @@ CREATE TABLE `t_title` (
   `index` int(10) DEFAULT '0',
   `content` text COLLATE utf8_bin,
   PRIMARY KEY (`id`),
-  KEY `index_language` (`language`)
+  KEY `index_language` (`language`),
+  KEY `index_language_index` (`language`,`index`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------

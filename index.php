@@ -1,6 +1,6 @@
 <?php
 require '/handler/interfaces/Handler.php';
-$login = new Title ( "guolaoshi" );
+$login = new LoadingPage ( "guolaoshi" );
 $login->handle ();
 
 ?>
