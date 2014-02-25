@@ -16,6 +16,15 @@ class ByteTools {
 		}
 		$this->position = $position;
 	}
+	public function writeByte($byte) {
+		$this->byteArray [$this->position] = (0xff & $byte);
+		$this->position += 1;
+	}
+	public function readByte() {
+		$byte = $this->byteArray [$this->position] & 0xFF;
+		$this->position += 1;
+		return $byte;
+	}
 	public function writeShort($short) {
 		$this->byteArray [$this->position] = (0xff & $short);
 		$this->byteArray [$this->position + 1] = (0xff00 & $short) >> 8;
