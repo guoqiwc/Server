@@ -1,5 +1,5 @@
 <?php
-require './util.php';
+require "/message/ByteTools.php";
 /**
  * 接收协议Message:CSRequestBroadCastMessage请求获取广播信息
  *
@@ -156,6 +156,7 @@ class CSUserBehaviorRequestMessage {
 	 *
 	 *
 	 *
+	 *
 	 * 类型
 	 * 0:打开关闭主界面
 	 * 1:打开关闭悬浮穿
@@ -246,6 +247,7 @@ class CSUserBehaviorMainWindowRequestMessage {
 	}
 	
 	/**
+	 *
 	 *
 	 *
 	 *
@@ -352,6 +354,7 @@ class CSUserBehaviorSuspensionWindowRequestMessage {
 	}
 	
 	/**
+	 *
 	 *
 	 *
 	 *
@@ -658,6 +661,7 @@ class CSUserBehaviorAboutWindowRequestMessage {
 	}
 	
 	/**
+	 *
 	 *
 	 *
 	 *
