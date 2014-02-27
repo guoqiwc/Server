@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : guoqiwc
+Source Server         : Guolaoshi
 Source Server Version : 50535
 Source Host           : localhost:3306
 Source Database       : server
@@ -10,10 +10,33 @@ Target Server Type    : MYSQL
 Target Server Version : 50535
 File Encoding         : 65001
 
-Date: 2014-02-23 21:53:17
+Date: 2014-02-27 20:52:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for t_broadcast
+-- ----------------------------
+DROP TABLE IF EXISTS `t_broadcast`;
+CREATE TABLE `t_broadcast` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `language` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `index` int(10) unsigned DEFAULT NULL COMMENT '索引',
+  `time` bigint(20) unsigned DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `image_url` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '图片地址',
+  `image_width` int(5) unsigned DEFAULT NULL COMMENT '图片宽度',
+  `image_height` int(5) unsigned DEFAULT NULL COMMENT '图片高度',
+  `context` text COLLATE utf8_bin COMMENT '广播内容',
+  `link` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '超链接地址',
+  PRIMARY KEY (`id`),
+  KEY `index_language_time` (`language`,`time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of t_broadcast
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_error
@@ -26,7 +49,7 @@ CREATE TABLE `t_error` (
   `ip` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `os` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `version` varchar(10) COLLATE utf8_bin DEFAULT NULL,
-  `time` bigint(20) DEFAULT NULL,
+  `time` bigint(20) unsigned DEFAULT NULL,
   `error_message` text COLLATE utf8_bin COMMENT '错误信息',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -42,7 +65,7 @@ DROP TABLE IF EXISTS `t_loading_page`;
 CREATE TABLE `t_loading_page` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `language` varchar(10) COLLATE utf8_bin DEFAULT '',
-  `index` int(10) DEFAULT '0',
+  `index` int(10) unsigned DEFAULT '0',
   `content` text COLLATE utf8_bin,
   PRIMARY KEY (`id`),
   KEY `index_language` (`language`),
@@ -69,8 +92,8 @@ CREATE TABLE `t_login` (
   `ip` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `os` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `version` varchar(10) COLLATE utf8_bin DEFAULT NULL,
-  `time` bigint(20) DEFAULT NULL,
-  `login` tinyint(1) DEFAULT NULL COMMENT '1为登陆 0为退出',
+  `time` bigint(20) unsigned DEFAULT NULL,
+  `login` tinyint(1) unsigned DEFAULT NULL COMMENT '1为登陆 0为退出',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -85,7 +108,7 @@ DROP TABLE IF EXISTS `t_title`;
 CREATE TABLE `t_title` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `language` varchar(10) COLLATE utf8_bin DEFAULT '',
-  `index` int(10) DEFAULT '0',
+  `index` int(10) unsigned DEFAULT '0',
   `content` text COLLATE utf8_bin,
   PRIMARY KEY (`id`),
   KEY `index_language` (`language`),

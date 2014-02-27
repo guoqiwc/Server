@@ -3,7 +3,7 @@ require '/handler/interfaces/Handler.php';
 require "/message/Message.php";
 
 $bt = new ByteTools ();
-$string = "呵呵の";
+$string = "邓老板";
 $bt->writeLongString ( $string );
 $bt->setPosition ( 0 );
 echo $bt->readLongString ();

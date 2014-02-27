@@ -17,6 +17,8 @@ class CSRequestBroadCastMessage {
 		$count = $bt->readShort ();
 		for($i = 0; $i < $count; ++ $i) {
 			$pb = new BroadCastTimeStampNetVO ();
+			$pb->setTimeStamp ( $bt->readInt () );
+			$pb->setTimeStamp ( $bt->readLongString () );
 			array_push ( $this->_csBroadCastList, $pb );
 		}
 	}
@@ -157,6 +159,8 @@ class CSUserBehaviorRequestMessage {
 	 *
 	 *
 	 *
+	 *
+	 *
 	 * 类型
 	 * 0:打开关闭主界面
 	 * 1:打开关闭悬浮穿
@@ -247,6 +251,8 @@ class CSUserBehaviorMainWindowRequestMessage {
 	}
 	
 	/**
+	 *
+	 *
 	 *
 	 *
 	 *
@@ -354,6 +360,8 @@ class CSUserBehaviorSuspensionWindowRequestMessage {
 	}
 	
 	/**
+	 *
+	 *
 	 *
 	 *
 	 *
@@ -661,6 +669,8 @@ class CSUserBehaviorAboutWindowRequestMessage {
 	}
 	
 	/**
+	 *
+	 *
 	 *
 	 *
 	 *
