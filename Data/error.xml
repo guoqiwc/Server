@@ -1,0 +1,10 @@
+<!--20000打头，遇到错误的时候发送-->
+<root>
+	<sendMessage id="20000" type="CS_ERROR" name="CSErrorRequest" comment="软件报错的错误信息">
+		<attribute name="timeStamp" type="longstring" comment="当前本地时间"/>
+		<attribute name="macId" type="longstring" comment="用户mac地址"/>
+		<attribute name="OSName" type="longstring" comment="用户操作系统"/>
+		<attribute name="version" type="longstring" comment="当前软件版本号"/>
+		<attribute name="errorMessage" type="longstring" comment="错误信息内容"/>
+	</sendMessage>
+</root>

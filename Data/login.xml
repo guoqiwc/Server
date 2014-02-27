@@ -1,0 +1,13 @@
+<!--10000打头，登陆的时候发送-->
+<root>
+	<sendMessage id="10000" type="CS_LOGIN" name="CSLoginRequest" comment="打开软件">
+		<attribute name="OSName" type="longstring" comment="用户操作系统"/>
+		<attribute name="version" type="longstring" comment="当前软件版本号"/>
+		<attribute name="timeStamp" type="longstring" comment="当前本地时间"/>
+		<attribute name="macId" type="longstring" comment="用户mac地址"/>
+	</sendMessage>
+	<sendMessage id="10002" type="CS_LOGOFF" name="CSLogoffRequest" comment="关闭软件">
+		<attribute name="timeStamp" type="longstring" comment="当前本地时间"/>
+		<attribute name="macId" type="longstring" comment="用户mac地址"/>
+	</sendMessage>
+</root>

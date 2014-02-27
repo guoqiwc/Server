@@ -1,0 +1,28 @@
+<!--60000打头，新闻广播-->
+<root>
+	<sendMessage id="60000" type="CS_GET_BROADCAST" name="CSRequestBroadCast" comment="请求获取广播信息">
+		<List name="csBroadCastList" type="BroadCastTimeStampNetVO" comment="当前的广播记录内容">
+			<attribute name="timeStamp" type="int" comment="上次更新的时间戳"/>
+			<attribute name="langName" type="longstring" comment="语言名"/>
+		</List>	
+	</sendMessage>
+	
+	<backMessage id="60001" type="SC_SEND_BROADCAST" name="SCResponeBroadCast" comment="服务器返回广播信息">
+	
+		<List name="scTimeStampList" type="BroadCastTimeStampNetVO" comment="服务器返回的广播标签">
+			<attribute name="timeStamp" type="int" comment="上次更新的时间戳"/>
+			<attribute name="langName" type="longstring" comment="语言名"/>
+		</List>
+		
+		<List name="scBroadCastList" type="SCBroadCastContextNetVO" comment="服务器返回的广播内容">
+			<attribute name="langName" type="longstring" comment="语言名，通过这个来分组"/>
+			<attribute name="index" type="byte" comment="当前内容在所在语言里的索引,通过这个排序用的，以免出现顺序错误"/>
+			<attribute name="title" type="longstring" comment="广播标题"/>
+			<attribute name="imageUrl" type="longstring" comment="图标地址"/>
+			<attribute name="imageWidth" type="short" comment="图片宽度"/>
+			<attribute name="imageHeight" type="short" comment="图片高度"/>
+			<attribute name="context" type="longstring" comment="广播内容"/>
+			<attribute name="link" type="longstring" comment="当前的内容的超链接"/>
+		</List>
+	</backMessage>
+</root>
