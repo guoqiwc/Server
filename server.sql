@@ -10,10 +10,46 @@ Target Server Type    : MYSQL
 Target Server Version : 50535
 File Encoding         : 65001
 
-Date: 2014-02-28 10:47:03
+Date: 2014-02-28 16:24:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for t_about_window_b
+-- ----------------------------
+DROP TABLE IF EXISTS `t_about_window_b`;
+CREATE TABLE `t_about_window_b` (
+  `id` int(10) unsigned NOT NULL,
+  `ip` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `mac` varchar(60) COLLATE utf8_bin DEFAULT NULL,
+  `type` tinyint(5) unsigned DEFAULT NULL COMMENT '类型',
+  `time` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '时间戳',
+  `state` tinyint(1) DEFAULT NULL COMMENT '状态',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of t_about_window_b
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for t_all_window_b
+-- ----------------------------
+DROP TABLE IF EXISTS `t_all_window_b`;
+CREATE TABLE `t_all_window_b` (
+  `id` int(10) unsigned NOT NULL,
+  `ip` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `mac` varchar(60) COLLATE utf8_bin DEFAULT NULL,
+  `type` tinyint(5) unsigned DEFAULT NULL COMMENT '类型',
+  `state` tinyint(5) DEFAULT NULL,
+  `time` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '时间戳',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of t_all_window_b
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_broadcast
@@ -67,6 +103,24 @@ CREATE TABLE `t_error` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for t_help_window_b
+-- ----------------------------
+DROP TABLE IF EXISTS `t_help_window_b`;
+CREATE TABLE `t_help_window_b` (
+  `id` int(10) unsigned NOT NULL,
+  `ip` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `mac` varchar(60) COLLATE utf8_bin DEFAULT NULL,
+  `check_lanuch` tinyint(1) unsigned DEFAULT NULL,
+  `time` bigint(20) unsigned DEFAULT NULL,
+  `hold_time_list` text COLLATE utf8_bin COMMENT '字符串形式的列表',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of t_help_window_b
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_loading_page
 -- ----------------------------
 DROP TABLE IF EXISTS `t_loading_page`;
@@ -107,6 +161,67 @@ CREATE TABLE `t_login` (
 
 -- ----------------------------
 -- Records of t_login
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for t_main_window_b
+-- ----------------------------
+DROP TABLE IF EXISTS `t_main_window_b`;
+CREATE TABLE `t_main_window_b` (
+  `id` int(10) unsigned NOT NULL,
+  `ip` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `mac` varchar(60) COLLATE utf8_bin DEFAULT NULL,
+  `type` tinyint(5) unsigned DEFAULT NULL COMMENT '类型',
+  `time` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '时间戳',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of t_main_window_b
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for t_setting_window_b
+-- ----------------------------
+DROP TABLE IF EXISTS `t_setting_window_b`;
+CREATE TABLE `t_setting_window_b` (
+  `id` int(10) unsigned NOT NULL,
+  `ip` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `mac` varchar(60) COLLATE utf8_bin DEFAULT NULL,
+  `time` bigint(20) unsigned DEFAULT NULL COMMENT '时间戳',
+  `launch_after_boot` tinyint(1) unsigned DEFAULT NULL COMMENT '类型',
+  `default_path` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `color_type` smallint(2) DEFAULT NULL COMMENT '颜色值',
+  `language` varchar(10) COLLATE utf8_bin DEFAULT NULL COMMENT '加载语言',
+  `load_over_time` int(10) DEFAULT NULL,
+  `load_refresh_time` int(10) DEFAULT NULL,
+  `color_bee_level` smallint(10) DEFAULT NULL,
+  `color_bee_size` smallint(10) DEFAULT NULL,
+  `palette_hue_level` smallint(10) DEFAULT NULL,
+  `palette_saturation_level` smallint(10) DEFAULT NULL,
+  `palette_brightness_level` smallint(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of t_setting_window_b
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for t_suspension_window_b
+-- ----------------------------
+DROP TABLE IF EXISTS `t_suspension_window_b`;
+CREATE TABLE `t_suspension_window_b` (
+  `id` int(10) unsigned NOT NULL,
+  `ip` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `mac` varchar(60) COLLATE utf8_bin DEFAULT NULL,
+  `type` tinyint(5) unsigned DEFAULT NULL COMMENT '类型',
+  `time` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '时间戳',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of t_suspension_window_b
 -- ----------------------------
 
 -- ----------------------------
