@@ -9,11 +9,9 @@ class ByteTools {
 		$this->byteArray = ($bin == null ? array () : $bin);
 	}
 	public function setPosition($position) {
-		if (count ( $this->byteArray ) <= $position) {
-			for($i = 0; i < $position - count ( $this->byteArray ) + 1; ++ $i) {
-				$this->byteArray [] = 0x00;
-			}
-		}
+		/*
+		 * if (count ( $this->byteArray ) <= $position) { for($i = 0; $i < $position - count ( $this->byteArray ) + 1; ++ $i) { array_push ( $this->byteArray, "" ); } }
+		 */
 		$this->position = $position;
 	}
 	public function writeByte($byte) {
@@ -21,9 +19,12 @@ class ByteTools {
 		$this->position += 1;
 	}
 	public function readByte() {
-		$byte = $this->byteArray [$this->position] & 0xFF;
+		$byte = $this->byteArray [$this->position];
 		$this->position += 1;
-		return $byte;
+		var_dump ( unpack ( "H*", $byte ) );
+		$byte = unpack ( "H*", $byte );
+		var_dump ( $byte [1] );
+		return intval ( $byte [1], 16 );
 	}
 	public function writeShort($short) {
 		$this->byteArray [$this->position] = (0xff & $short);
@@ -31,10 +32,10 @@ class ByteTools {
 		$this->position += 2;
 	}
 	public function readShort() {
-		$short = $this->byteArray [$this->position] & 0xFF;
-		$short |= (($this->byteArray [$this->position + 1] << 8) & 0xFF00);
+		$str = substr ( $this->byteArray, $this->position, $this->position + 2 );
+		$short = unpack ( "S", $str );
 		$this->position += 2;
-		return $short;
+		return $short [1];
 	}
 	public function writeInt($int) {
 		$this->byteArray [$this->position] = (0xFF & $int);
@@ -44,25 +45,23 @@ class ByteTools {
 		$this->position += 4;
 	}
 	public function readInt() {
-		$int = $this->byteArray [$this->position] & 0xFF;
-		$int |= (($this->byteArray [$this->position + 1] << 8) & 0xFF00);
-		$int |= (($this->byteArray [$this->position + 2] << 16) & 0xFF0000);
-		$int |= (($this->byteArray [$this->position + 3] << 24) & 0xFF000000);
+		$str = substr ( $this->byteArray, $this->position, $this->position + 4 );
+		$int = unpack ( "i", $str );
 		$this->position += 4;
-		return $int;
+		return $int [1];
 	}
 	public function writeLongString($string) {
 		$length = strlen ( $string );
 		$this->writeShort ( $length );
 		for($index = 0; $index < $length; ++ $index) {
-			$this->byteArray [$this->position ++] = ord ( $string [$index] ); // >= 128 ? ord ( $string [$index] ) - 256 : ord ( $string [$index] );
+			$this->byteArray [$this->position ++] = $string [$index]; // >= 128 ? ord ( $string [$index] ) - 256 : ord ( $string [$index] );
 		}
 	}
 	public function readLongString() {
 		$length = $this->readShort ();
-		$str = '';
+		$str = "";
 		for($index = 0; $index < $length; ++ $index) {
-			$str .= chr ( $this->byteArray [$this->position ++] );
+			$str .= ($this->byteArray [$this->position ++]); // >= 128 ? ord ( $string [$index] ) - 256 : ord ( $string [$index] );
 		}
 		return $str;
 	}

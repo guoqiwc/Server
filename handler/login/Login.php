@@ -13,13 +13,13 @@ class Login implements Handler {
 		$os = $this->package->getOSName ();
 		$version = $this->package->getVersion ();
 		$time = $this->package->getTimeStamp ();
-		settype ( $time, "float" );
 		$login = 1; // 1为登陆 0为退出
-		
+		$sql = "INSERT INTO `t_login`(user_id,mac,ip,os,version,time,login) VALUES ('1', '$mac', '$ip', '$os', '$version', '$time', '$login');";
 		$mysql = Mysql::getInstence ();
-		if ($mysql->insert ( "INSERT INTO `t_login`(user_id,mac,ip,os,version,time,login) VALUES ('1', '$mac', '$ip', '$os', '$version', '$time', '$login');" ) != false) {
+		if ($mysql->insert ( $sql ) != false) {
 			return;
 		} else {
+			echo 'ERROR';
 		}
 	}
 }

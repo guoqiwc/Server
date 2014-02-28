@@ -11,10 +11,10 @@ class BehaviorAllWindow {
 		$ip = $_SERVER ["REMOTE_ADDR"];
 		$mac = $this->package->getMacId ();
 		$type = $this->package->getType ();
-		$state = $this->package->getState ();
+		$state = $this->package->getDuration ();
 		$timeStamp = $this->package->getTimeStamp ();
 		$mysql = Mysql::getInstence ();
-		$mysql->insert ( "INSERT INTO `t_all_window_b`(ip,mac,type,state,time) VALUES ('$ip','$mac','$type', $state,'$timeStamp');" );
+		$mysql->insert ( "INSERT INTO `t_all_window_b`(ip,mac,type,duration,time) VALUES ('$ip','$mac','$type', $state,'$timeStamp');" );
 		return;
 	}
 }

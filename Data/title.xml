@@ -10,7 +10,7 @@
 		<List name="scLangList" type="LangContextNetVO" comment="当前拥有的语言库">
 			<attribute name="langName" type="longstring" comment="语言名，通过这个来分组"/>
 			<attribute name="index" type="byte" comment="当前内容在所在语言里的索引"/>
-			<attribute name="langContext" type="longstring" comment="语言的内容"/>
+			<attribute name="langContent" type="longstring" comment="语言的内容"/>
 		</List>
 	</backMessage>
 </root>

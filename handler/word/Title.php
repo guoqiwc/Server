@@ -29,7 +29,7 @@ class Title implements Handler {
 			$vo = new LangContextNetVO ();
 			$vo->setIndex ( $row ["index"] );
 			$vo->setLangName ( $row ["language"] );
-			$vo->setLangContext ( $row ["content"] );
+			$vo->setLangContent ( $row ["content"] );
 			array_push ( $_scLangList, $vo );
 		}
 		$this->package->setScLangList ( $_scLangList );
