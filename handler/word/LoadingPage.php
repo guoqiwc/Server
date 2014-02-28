@@ -2,30 +2,39 @@
 /**
  * 读取界面
  */
-class LoadingPage implements Handler{
+class LoadingPage implements Handler {
 	private $package;
-	function __construct($package) {
-		$this->package = $package;
+	function __construct($bin) {
+		$this->package = new CSRequestLoadingPageMessage ( $bin );
 	}
 	function handle() {
-		$language = array (
-				"CN",
-				"EN" 
-		);
+		if (count ( $this->package->getCsLangList () ) <= 0) {
+			return;
+		}
 		$mysql = Mysql::getInstence ();
 		$sql = "SELECT * FROM `t_loading_page` WHERE";
+		$list = $this->package->getCsLangList ();
 		// 遍历语言数组
-		for($index = 0; $index < count ( $language ); ++ $index) {
-			$sql .= " `language` = '$language[$index]'";
+		for($index = 0; $index < count ( $list ); ++ $index) {
+			$language = $list [index]->getLangName ();
+			$sql .= " `language` = '$language'";
 			$sql .= " OR";
 		}
-		$sql = substr ( $sql, 0, strlen ( $sql ) - 3 ) . "ORDER BY `language` ASC";
+		$sql = substr ( $sql, 0, strlen ( $sql ) - 3 ) . "ORDER BY `language` ASC,`index` ASC";
 		$result = $mysql->query ( $sql );
+		$this->package = new SCResponeLoadingPageMessage ();
+		$_scLangList = array ();
 		for($index = 0; $index < $result->num_rows; ++ $index) {
-			// TODO 这里面开始攒包裹返回
-			var_dump ( $row = $result->fetch_row () );
+			$row = $result->fetch_row ();
+			$vo = new LangContextNetVO ();
+			$vo->setIndex ( $row ["index"] );
+			$vo->setLangName ( $row ["language"] );
+			$vo->setLangContext ( $row ["content"] );
+			array_push ( $_scLangList, $vo );
 		}
+		$this->package->setScLangList ( $_scLangList );
 		$result->close ();
+		echo $this->package->build ()->toString ();
 	}
 }
 

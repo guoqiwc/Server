@@ -17,6 +17,7 @@ class Logout implements Handler {
 		$mysql = Mysql::getInstence ();
 		if ($mysql->insert ( "INSERT INTO `t_login`(user_id,mac,ip,os,version,time,login) VALUES ('1', '$mac', '$ip', '', '', '$time', '$login');" ) != false) {
 			// TODO 增加成功返回包
+			return;
 		} else {
 		}
 	}
