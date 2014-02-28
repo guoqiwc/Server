@@ -11,7 +11,7 @@ require "/handler/behavior/AboutWindow.php";
 require "/handler/behavior/SettingWindow.php";
 require "/handler/behavior/SuspensionWindow.php";
 require "/handler/behavior/BehaviorMainWindow.php";
-
+require "/handler/behavior/BehaviorAllWindow.php";
 interface Handler {
 	// 处理函数
 	function handle();
