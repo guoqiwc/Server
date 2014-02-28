@@ -22,36 +22,43 @@ if ($bin == null || $bin == "") {
 			break;
 		case 30000 :
 			$handler = new Title ( $bin );
-			// $handler->handle ();
+			$handler->handle ();
 			break;
 		case 40000 :
-			new LoadingPage ( $bin );
+			//$handler = new LoadingPage ( $bin );
+			//$handler->handle ();
 			break;
 		case 50000 :
 			$handler = new BehaviorAllWindow ( $bin );
 			$handler->handle ();
 			break;
 		case 50002 :
-			new BehaviorMainWindow ( $bin );
+			$handler = new BehaviorMainWindow ( $bin );
+			$handler->handle ();
 			break;
 		case 50004 :
-			new SuspensionWindow ( $bin );
+			$handler = new SuspensionWindow ( $bin );
+			$handler->handle ();
 			break;
 		case 50006 :
-			new SettingWindow ( $bin );
+			$handler = new SettingWindow ( $bin );
+			$handler->handle ();
 			break;
 		case 50008 :
-			new AboutWindow ( $bin );
+			$handler = new AboutWindow ( $bin );
+			$handler->handle ();
 			break;
 		case 50010 :
 			$handler = new HelpWindow ( $bin );
 			$handler->handle ();
 			break;
 		case 50012 :
-			new WebshotWindow ( $bin );
+			$handler = new WebshotWindow ( $bin );
+			$handler->handle ();
 			break;
 		case 50014 :
-			new Webshot ( $bin );
+			$handler = new Webshot ( $bin );
+			$handler->handle ();
 			break;
 		case 60000 :
 			new Broadcast ( $bin );
