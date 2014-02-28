@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50535
 File Encoding         : 65001
 
-Date: 2014-02-27 20:52:56
+Date: 2014-02-28 10:47:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,11 +32,19 @@ CREATE TABLE `t_broadcast` (
   `link` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '超链接地址',
   PRIMARY KEY (`id`),
   KEY `index_language_time` (`language`,`time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of t_broadcast
 -- ----------------------------
+INSERT INTO `t_broadcast` VALUES ('1', 'CN', '0', '1', '1', '1', '1', '1', 0x31, '1');
+INSERT INTO `t_broadcast` VALUES ('2', 'EN', '0', '2', '2', '2', '2', '2', 0x32, '2');
+INSERT INTO `t_broadcast` VALUES ('3', 'CN', '1', '3', '3', '3', '3', '3', 0x33, '3');
+INSERT INTO `t_broadcast` VALUES ('4', 'CN', '2', '5', '4', '4', '4', '4', 0x34, '4');
+INSERT INTO `t_broadcast` VALUES ('5', 'EN', '1', '4', '5', '5', '5', '5', 0x35, '5');
+INSERT INTO `t_broadcast` VALUES ('6', 'CN', '3', '6', '6', '6', '6', '6', 0x36, '6');
+INSERT INTO `t_broadcast` VALUES ('7', 'JP', '0', '4', '4', '4', '4', '4', 0x34, '4');
+INSERT INTO `t_broadcast` VALUES ('8', 'JP', '1', '3', '3', '3', '3', '3', 0x33, '3');
 
 -- ----------------------------
 -- Table structure for t_error

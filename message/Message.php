@@ -68,6 +68,7 @@ class SCResponeBroadCastMessage {
 		$count = count ( $this->_scTimeStampList );
 		$bt->writeShort ( $count );
 		for($i = 0; $i < $count; ++ $i) {
+			//TODO 缺东西
 		}
 		$count = count ( $this->_scBroadCastList );
 		$bt->writeShort ( $count );

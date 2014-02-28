@@ -2,7 +2,7 @@
 <root>
 	<sendMessage id="60000" type="CS_GET_BROADCAST" name="CSRequestBroadCast" comment="请求获取广播信息">
 		<List name="csBroadCastList" type="BroadCastTimeStampNetVO" comment="当前的广播记录内容">
-			<attribute name="timeStamp" type="int" comment="上次更新的时间戳"/>
+			<attribute name="timeStamp" type="longstring" comment="上次更新的时间戳"/>
 			<attribute name="langName" type="longstring" comment="语言名"/>
 		</List>	
 	</sendMessage>
@@ -10,7 +10,7 @@
 	<backMessage id="60001" type="SC_SEND_BROADCAST" name="SCResponeBroadCast" comment="服务器返回广播信息">
 	
 		<List name="scTimeStampList" type="BroadCastTimeStampNetVO" comment="服务器返回的广播标签">
-			<attribute name="timeStamp" type="int" comment="上次更新的时间戳"/>
+			<attribute name="timeStamp" type="longstring" comment="本次更新的时间戳"/>
 			<attribute name="langName" type="longstring" comment="语言名"/>
 		</List>
 		

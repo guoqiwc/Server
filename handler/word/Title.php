@@ -2,7 +2,7 @@
 /**
  * 标题栏每日一句
  */
-class Title {
+class Title implements Handler {
 	private $package;
 	function __construct($package) {
 		$this->package = $package;

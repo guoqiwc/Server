@@ -1,6 +1,6 @@
 <?php
-require '/handler/interfaces/Handler.php';
 require "/message/Message.php";
+require '/handler/interfaces/Handler.php';
 
 $bt = new ByteTools ();
 $string = "邓老板";

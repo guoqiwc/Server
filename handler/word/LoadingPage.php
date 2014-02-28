@@ -2,7 +2,7 @@
 /**
  * 读取界面
  */
-class LoadingPage {
+class LoadingPage implements Handler{
 	private $package;
 	function __construct($package) {
 		$this->package = $package;

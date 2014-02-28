@@ -66,5 +66,12 @@ class ByteTools {
 		}
 		return $str;
 	}
+	public function toString() {
+		$str = "";
+		for($index = 0; $index < count ( $this->byteArray ); ++ $index) {
+			$str .= $this->byteArray [$index];
+		}
+		return $str;
+	}
 }
 ?>
