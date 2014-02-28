@@ -10,6 +10,8 @@ require "/handler/behavior/HelpWindow.php";
 require "/handler/behavior/AboutWindow.php";
 require "/handler/behavior/SettingWindow.php";
 require "/handler/behavior/SuspensionWindow.php";
+require "/handler/behavior/BehaviorMainWindow.php";
+
 interface Handler {
 	// 处理函数
 	function handle();

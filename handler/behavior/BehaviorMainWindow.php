@@ -1,11 +1,11 @@
 <?php
 /**
- * 悬浮窗行为
+ * 主界面行为
  */
-class SuspensionWindow {
+class BehaviorMainWindow {
 	private $package;
 	function __construct($bin) {
-		$this->package = new CSUserBehaviorSuspensionWindowRequestMessage ( $bin );
+		$this->package = new CSUserBehaviorMainWindowRequestMessage ( $bin );
 	}
 	function handle() {
 		$ip = $_SERVER ["REMOTE_ADDR"];
@@ -13,9 +13,8 @@ class SuspensionWindow {
 		$type = $this->package->getType ();
 		$timeStamp = $this->package->getTimeStamp ();
 		$mysql = Mysql::getInstence ();
-		$mysql->insert ( "INSERT INTO `t_suspension_window_b`(ip,mac,type,time) VALUES ('$ip','$mac','$type', '$timeStamp');" );
+		$mysql->insert ( "INSERT INTO `t_main_window_b`(ip,mac,type,time) VALUES ('$ip','$mac','$type', '$timeStamp');" );
 		return;
 	}
 }
-
 ?>
