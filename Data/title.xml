@@ -1,7 +1,7 @@
 <!--30000打头，获得主窗体标题栏的每日一句的库-->
 <root>
 	<sendMessage id="30000" type="CS_GET_MAIN_TITLE" name="CSRequestMainTitle" comment="客户端请求获得主窗体标题的每日一句语言库">
-		<List name="scLangList" type="LangNameNetVO" comment="当前拥有的语言库">
+		<List name="csLangList" type="LangNameNetVO" comment="当前拥有的语言库">
 			<attribute name="langName" type="longstring" comment="语言名"/>
 		</List>
 	</sendMessage>

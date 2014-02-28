@@ -12,6 +12,8 @@ require "/handler/behavior/SettingWindow.php";
 require "/handler/behavior/SuspensionWindow.php";
 require "/handler/behavior/BehaviorMainWindow.php";
 require "/handler/behavior/BehaviorAllWindow.php";
+require "/handler/behavior/WebshotWindow.php";
+require "/handler/behavior/Webshot.php";
 interface Handler {
 	// 处理函数
 	function handle();

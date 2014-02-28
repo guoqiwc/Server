@@ -17,12 +17,12 @@ class Broadcast implements Handler {
 		// 遍历语言数组
 		for($index = 0; $index < count ( $list ) - 1; ++ $index) {
 			$language = $list [$index]->getLangName ();
-			$time = $list [$index]->getTimeStamp ();
+			$time = $list [$index]->getIteration ();
 			$sql .= "(`language` = '$language' AND `time` > '$time' ) OR";
 		}
 		$_language = $list [count ( $list ) - 1]->getLangName ();
-		$_time = $list [count ( $list ) - 1]->getTimeStamp ();
-		$sql .= "(`language` = '$_language' AND `time` > '$_time' )";
+		$_version = $list [count ( $list ) - 1]->getIteration ();
+		$sql .= "(`language` = '$_language' AND `time` > '$_version' )";
 		$sql .= "ORDER BY `language` DESC, `time` DESC;";
 		$result = $mysql->query ( $sql );
 		
@@ -38,7 +38,7 @@ class Broadcast implements Handler {
 				$language = $row ['language'];
 				$pb = new BroadCastTimeStampNetVO ();
 				$pb->setLangName ( $language );
-				$pb->setTimeStamp ( $row ['time'] );
+				$pb->setIteration ( $row ['time'] );
 				array_push ( $_scTimeStampList, $pb );
 			}
 			$pb = new SCBroadCastContextNetVO ();

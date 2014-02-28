@@ -50,13 +50,13 @@
 		15:关闭url监听~
 		16:打开图片~
 		17:打开项目~
-		18:点击放大
-		19:点击缩小
+		18:点击放大~
+		19:点击缩小~
 		20:点击分析(无图)~
 		21:点击分析(有图)~
-		22:点击删除
-		23:点击添加颜色
-		24:点击编辑颜色
+		22:点击删除~
+		23:点击添加颜色~
+		24:点击编辑颜色~
 		25:点击导出aco色板(无色板)~
 		26:点击导出aco色板(有色板)~
 		27:点击导出aco色板(导出完成)~
@@ -85,13 +85,13 @@
 		15:关闭url监听~
 		16:打开图片~
 		17:打开项目~
-		18:点击放大
-		19:点击缩小
+		18:点击放大~
+		19:点击缩小~
 		20:点击分析(无图)~
 		21:点击分析(有图)~
-		22:点击删除
-		23:点击添加颜色
-		24:点击编辑颜色
+		22:点击删除~
+		23:点击添加颜色~
+		24:点击编辑颜色~
 		25:点击导出aco色板(无色板)~
 		26:点击导出aco色板(有色板)~
 		27:点击导出aco色板(导出完成)~
@@ -104,31 +104,36 @@
 		<attribute name="macId" type="longstring" comment="用户mac地址"/>
 	</sendMessage>
 	
-	<!--
-		0:屏幕截图
-		1:开启屏幕取色
-		2:关闭屏幕取色
-		3:开启网页截图分析
-		4:关闭网页截图分析
-		5:开启url监听
-		6:关闭url监听
+	<!--悬浮窗用户行为采集
+		0:点击开始加载~
+		1:点击暂停加载~
+		2:点击截图~
+		3:点击取色开~
+		4:点击取色关~
+		5:点击web色彩分析开~
+		6:点击web色彩分析关~
+		7:点击url监听开~
+		8:点击url监听关~
 	-->
 	<sendMessage id="50004" type="CS_SEND_USER_BEHAVIOR_SUSPENSION_WINDOW" name="CSUserBehaviorSuspensionWindowRequest" comment="悬浮窗用户行为采集">
-		<attribute name="type" type="short" comment="
+			<attribute name="type" type="short" comment="
 		类型
-		0:屏幕截图
-		1:开启屏幕取色
-		2:关闭屏幕取色
-		3:开启网页截图分析
-		4:关闭网页截图分析
-		5:开启url监听
-		6:关闭url监听"
+		0:点击开始加载
+		1:点击暂停加载
+		2:点击截图
+		3:点击取色开
+		4:点击取色关
+		5:点击web色彩分析开
+		6:点击web色彩分析关
+		7:点击url监听开
+		8:点击url监听关
+		"
 		/>
 		<attribute name="timeStamp" type="longstring" comment="当前本地时间"/>
 		<attribute name="macId" type="longstring" comment="用户mac地址"/>
 	</sendMessage>
 	
-	
+	<!--设置页面用户行为采集~-->
 	<sendMessage id="50006" type="CS_SEND_USER_BEHAVIOR_SETTING_WINDOW" name="CSUserBehaviorSettingWindowRequest" comment="设置面板用户行为采集">
 		<attribute name="launchAfterBoot" type="byte" comment="开机启动，0关闭，1开启"/>
 		<attribute name="defaultPath" type="longstring" comment="默认保存路径"/>
@@ -146,10 +151,10 @@
 	</sendMessage>
 	
 	<!--
-	0:点击第1个人
-	1:点击第2个人
-	2:点击第3个人
-	3:点击第4个人
+	0:点击第1个人~
+	1:点击第2个人~
+	2:点击第3个人~
+	3:点击第4个人~
 	-->
 	<sendMessage id="50008" type="CS_SEND_USER_BEHAVIOR_ABOUT_WINDOW" name="CSUserBehaviorAboutWindowRequest" comment="关于窗口用户行为采集">
 		<attribute name="type" type="short" comment="
@@ -164,7 +169,7 @@
 		<attribute name="macId" type="longstring" comment="用户mac地址"/>
 	</sendMessage>
 	
-	<!--帮助页面用户行为采集-->
+	<!--帮助页面用户行为采集~-->
 	<sendMessage id="50010" type="CS_SEND_USER_BEHAVIOR_HELP_WINDOW" name="CSUserBehaviorHelpWindowRequest" comment="帮助窗口用户行为采集">
 		<List name="holdTimeList" type="HoldTimeVO" comment="停留时间数据包">
 			<attribute name="holdTime" type="int" comment="页面停留时间"/>
@@ -173,4 +178,45 @@
 		<attribute name="timeStamp" type="longstring" comment="当前本地时间"/>
 		<attribute name="macId" type="longstring" comment="用户mac地址"/>
 	</sendMessage>
+	
+	<!--网页截图窗体用户行为采集~
+		0:点击正在下载tab~
+		1:点击已完成tab~
+		2:点击失败tab~
+		3:点击开始~
+		4:点击暂停~
+		5:删除正在下载~
+		6:删除已完成~
+		7:删除失败~
+		8:刷新正在下载~
+		9:刷新已完成~
+		10:刷新失败~
+	-->
+	<sendMessage id="50012" type="CS_SEND_USER_BEHAVIOR_WEBSHOT_WINDOW" name="CSUserBehaviorWebshotWindowRequest" comment="网页截图窗体用户行为采集">
+		<attribute name="type" type="short" comment="
+		类型
+		0:点击正在下载tab
+		1:点击已完成tab
+		2:点击失败tab
+		3:点击开始
+		4:点击暂停
+		5:删除正在下载
+		6:删除已完成
+		7:删除失败
+		8:刷新正在下载
+		9:刷新已完成
+		10:刷新失败
+		"
+		/>
+		<attribute name="timeStamp" type="longstring" comment="当前本地时间"/>
+		<attribute name="macId" type="longstring" comment="用户mac地址"/>
+	</sendMessage>
+	
+	<!--网页截图用户行为采集~-->
+	<sendMessage id="50014" type="CS_SEND_USER_BEHAVIOR_WEBSHOT" name="CSUserBehaviorWebshotRequest" comment="网页截图用户行为采集">
+		<attribute name="maxTaskNum" type="short" comment="最大网页截图任务数量"/>
+		<attribute name="timeStamp" type="longstring" comment="当前本地时间"/>
+		<attribute name="macId" type="longstring" comment="用户mac地址"/>
+	</sendMessage>
+	
 </root>

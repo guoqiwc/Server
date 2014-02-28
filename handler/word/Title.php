@@ -13,7 +13,7 @@ class Title implements Handler {
 		}
 		$mysql = Mysql::getInstence ();
 		$sql = "SELECT * FROM `t_title` WHERE";
-		$list = $this->package->getScLangList ();
+		$list = $this->package->getCsLangList ();
 		// 遍历语言数组
 		for($index = 0; $index < count ( $list ); ++ $index) {
 			$language = $list [index]->getLangName ();
