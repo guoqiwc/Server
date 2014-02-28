@@ -1,13 +1,13 @@
 <!--30000打头，获得主窗体标题栏的每日一句的库-->
 <root>
 	<sendMessage id="30000" type="CS_GET_MAIN_TITLE" name="CSRequestMainTitle" comment="客户端请求获得主窗体标题的每日一句语言库">
-		<List name="scLangList" type="LangNameNetVO"comment="当前拥有的语言库">
+		<List name="scLangList" type="LangNameNetVO" comment="当前拥有的语言库">
 			<attribute name="langName" type="longstring" comment="语言名"/>
 		</List>
 	</sendMessage>
 	
 	<backMessage id="30001" type="SC_SEND_MAIN_TITLE" name="SCResponeMainTitle" comment="服务器发送给客户端主窗体标题的每日一句语言库">
-		<List name="scLangList" type="LangContextNetVO"comment="当前拥有的语言库">
+		<List name="scLangList" type="LangContextNetVO" comment="当前拥有的语言库">
 			<attribute name="langName" type="longstring" comment="语言名，通过这个来分组"/>
 			<attribute name="index" type="byte" comment="当前内容在所在语言里的索引"/>
 			<attribute name="langContext" type="longstring" comment="语言的内容"/>
