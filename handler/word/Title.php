@@ -27,6 +27,7 @@ class Title implements Handler {
 		for($index = 0; $index < $result->num_rows; ++ $index) {
 			$row = $result->fetch_row ();
 			$vo = new LangContextNetVO ();
+			
 			$vo->setIndex ( $row [2] );
 			$vo->setLangName ( $row [1] );
 			$vo->setLangContent ( $row [3] );
