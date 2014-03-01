@@ -1,6 +1,7 @@
 <?php
 require "/message/Message.php";
 require '/handler/interfaces/Handler.php';
+require "Resources/GetPicture.php";
 $bin = file_get_contents ( "php://input" );
 if ($bin == null || $bin == "") {
 } else {
