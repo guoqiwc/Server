@@ -1,13 +1,13 @@
 <!--60000打头，新闻广播-->
 <root>
-	<sendMessage id="60000" type="CS_GET_BROADCAST" name="CSRequestBroadCast" comment="请求获取广播信息">
+	<sendMessage id="6000" type="CS_GET_BROADCAST" name="CSRequestBroadCast" comment="请求获取广播信息">
 		<List name="csBroadCastList" type="BroadCastTimeStampNetVO" comment="当前的广播记录内容">
 			<attribute name="iteration " type="int" comment="上次更新的迭代号儿"/>
 			<attribute name="langName" type="longstring" comment="语言名"/>
 		</List>	
 	</sendMessage>
 	
-	<backMessage id="60001" type="SC_SEND_BROADCAST" name="SCResponeBroadCast" comment="服务器返回广播信息">
+	<backMessage id="6001" type="SC_SEND_BROADCAST" name="SCResponeBroadCast" comment="服务器返回广播信息">
 	
 		<List name="scTimeStampList" type="BroadCastTimeStampNetVO" comment="服务器返回的广播标签">
 			<attribute name="iteration" type="int" comment="上次更新的迭代号儿"/>

@@ -35,7 +35,7 @@ class Title implements Handler {
 		}
 		$this->package->setScLangList ( $_scLangList );
 		$result->close ();
-		echo $this->package->build ()->toString ();
+		echo $this->package->build ()->getByteArray();
 	}
 }
 ?>

@@ -16,7 +16,7 @@ class LoadingPage implements Handler {
 		$list = $this->package->getCsLangList ();
 		// 遍历语言数组
 		for($index = 0; $index < count ( $list ); ++ $index) {
-			$language = $list [index]->getLangName ();
+			$language = $list [$index]->getLangName ();
 			$sql .= " `language` = '$language'";
 			$sql .= " OR";
 		}
@@ -27,14 +27,14 @@ class LoadingPage implements Handler {
 		for($index = 0; $index < $result->num_rows; ++ $index) {
 			$row = $result->fetch_row ();
 			$vo = new LangContextNetVO ();
-			$vo->setIndex ( $row ["index"] );
-			$vo->setLangName ( $row ["language"] );
-			$vo->setLangContent ( $row ["content"] );
+			$vo->setIndex ( $row [2] );
+			$vo->setLangName ( $row [1] );
+			$vo->setLangContent ( $row [3] );
 			array_push ( $_scLangList, $vo );
 		}
 		$this->package->setScLangList ( $_scLangList );
 		$result->close ();
-		echo $this->package->build ()->toString ();
+		echo $this->package->build ()->getByteArray();
 	}
 }
 

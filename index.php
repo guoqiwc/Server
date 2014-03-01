@@ -4,63 +4,62 @@ require '/handler/interfaces/Handler.php';
 $bin = file_get_contents ( "php://input" );
 if ($bin == null || $bin == "") {
 } else {
-	$bt = new ByteTools ( $bin );
-	$bt->setPosition ( 6 );
-	$messageId = $bt->readShort ();
-	switch ($messageId) {
-		case 10000 :
+	$messageByte = substr ( $bin, 6, 2 );
+	$data = unpack ( "s", $messageByte );
+	switch ($data[1]) {
+		case 1000 :
 			$handler = new Login ( $bin );
-			// $handler->handle ();
+			$handler->handle ();
 			break;
-		case 10002 :
+		case 1002 :
 			$handler = new Logout ( $bin );
-			// $handler->handle ();
+			$handler->handle ();
 			break;
-		case 20000 :
+		case 2000 :
 			$handler = new Error ( $bin );
-			// $handler->handle ();
+			$handler->handle ();
 			break;
-		case 30000 :
+		case 3000 :
 			$handler = new Title ( $bin );
 			$handler->handle ();
 			break;
-		case 40000 :
-			//$handler = new LoadingPage ( $bin );
-			//$handler->handle ();
+		case 4000 :
+			$handler = new LoadingPage ( $bin );
+			$handler->handle ();
 			break;
-		case 50000 :
+		case 5000 :
 			$handler = new BehaviorAllWindow ( $bin );
 			$handler->handle ();
 			break;
-		case 50002 :
+		case 5002 :
 			$handler = new BehaviorMainWindow ( $bin );
 			$handler->handle ();
 			break;
-		case 50004 :
+		case 5004 :
 			$handler = new SuspensionWindow ( $bin );
 			$handler->handle ();
 			break;
-		case 50006 :
+		case 5006 :
 			$handler = new SettingWindow ( $bin );
 			$handler->handle ();
 			break;
-		case 50008 :
+		case 5008 :
 			$handler = new AboutWindow ( $bin );
 			$handler->handle ();
 			break;
-		case 50010 :
+		case 5010 :
 			$handler = new HelpWindow ( $bin );
 			$handler->handle ();
 			break;
-		case 50012 :
+		case 5012 :
 			$handler = new WebshotWindow ( $bin );
 			$handler->handle ();
 			break;
-		case 50014 :
+		case 5014 :
 			$handler = new Webshot ( $bin );
 			$handler->handle ();
 			break;
-		case 60000 :
+		case 6000 :
 			new Broadcast ( $bin );
 			break;
 	}

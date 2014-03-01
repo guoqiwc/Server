@@ -7,7 +7,7 @@ class ByteTools {
 	private $position = 0;
 	function __construct($bin = null) {
 		if ($bin != null) {
-			$this->byteArray = substr ( $bin, 0, strlen ( $bin ) );
+			$this->byteArray = str_split ( $bin );
 		}
 	}
 	function setPosition($position) {
@@ -20,19 +20,19 @@ class ByteTools {
 		$this->position = $position;
 	}
 	function readByte() {
-		$value = substr ( $this->byteArray, $this->position, 1 );
+		$value = $this->byteArray [$this->position];
 		$data = unpack ( "c", $value );
 		$this->position += 1;
 		return $data [1];
 	}
 	function readShort() {
-		$value = substr ( $this->byteArray, $this->position, 2 );
+		$value = $this->byteArray [$this->position] . $this->byteArray [$this->position + 1];
 		$data = unpack ( "s", $value );
 		$this->position += 2;
 		return $data [1];
 	}
 	function readInt() {
-		$value = substr ( $this->byteArray, $this->position, 4 );
+		$value = $this->byteArray [$this->position] . $this->byteArray [$this->position + 1] . $this->byteArray [$this->position + 2] . $this->byteArray [$this->position + 3];
 		$data = unpack ( "l", $value );
 		$this->position += 4;
 		return $data [1];
