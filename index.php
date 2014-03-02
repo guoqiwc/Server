@@ -1,9 +1,8 @@
 <?php
 require "message/Message.php";
 require "handler/interfaces/Handler.php";
-require "Resources/GetPicture.php";
+//require "Resources/GetPicture.php";
 $bin = file_get_contents ( "php://input" );
-echo "d";
 if ($bin == null || $bin == "") {
 } else {
 	$messageByte = substr ( $bin, 6, 2 );

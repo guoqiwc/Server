@@ -8,8 +8,9 @@ class Mysql {
 	// 屏蔽构造函数
 	private function __construct() {
 		if (self::$mysqli == null) {
-			//self::$mysqli = new mysqli ( "127.0.0.1", "", "root", "server", "3306" );
+			// self::$mysqli = new mysqli ( "127.0.0.1", "root", "root", "server", "3306" );
 			self::$mysqli = new mysqli ( "127.0.0.1", "symentyc_guoqi", "555263", "symentyc_server", "3306" );
+			self::$mysqli->set_charset ( "UTF8" );
 			if (self::$mysqli->connect_errno) {
 				echo "Failed to connect to MySQL: " . self::$mysqli->connect_error;
 			}
