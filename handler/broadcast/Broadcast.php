@@ -34,28 +34,28 @@ class Broadcast implements Handler {
 		for($index = 0; $index < $result->num_rows; ++ $index) {
 			$row = $result->fetch_row ();
 			// 递推获得最新语言的时间戳
-			if ($language == "" || $language != $row ['language']) {
-				$language = $row ['language'];
+			if ($language == "" || $language != $row [1]) {
+				$language = $row [1];
 				$pb = new BroadCastTimeStampNetVO ();
 				$pb->setLangName ( $language );
-				$pb->setIteration ( $row ['time'] );
+				$pb->setIteration ( $row [3] );
 				array_push ( $_scTimeStampList, $pb );
 			}
 			$pb = new SCBroadCastContextNetVO ();
-			$pb->setLangName ( $row ['language'] );
-			$pb->setIndex ( $row ['index'] );
-			$pb->setTitle ( $row ['title'] );
-			$pb->setImageUrl ( $row ['image_url'] );
-			$pb->setImageWidth ( $row ['image_width'] );
-			$pb->setImageHeight ( $row ['image_height'] );
-			$pb->setContext ( $row ['context'] );
-			$pb->setLink ( $row ['link'] );
+			$pb->setLangName ( $row [1] );
+			$pb->setIndex ( $row [3] );
+			$pb->setTitle ( $row [4] );
+			$pb->setImageUrl ( $row [5] );
+			$pb->setImageWidth ( $row [6] );
+			$pb->setImageHeight ( $row [7] );
+			$pb->setContext ( $row [8] );
+			$pb->setLink ( $row [9] );
 			array_push ( $_scBroadCastList, $pb );
 		}
 		$this->package->setScTimeStampList ( $_scTimeStampList );
 		$this->package->setScBroadCastList ( $_scBroadCastList );
 		$result->close ();
-		echo $this->package->build ()->toString ();
+		echo $this->package->build ()->getByteArray();
 	}
 }
 ?>
