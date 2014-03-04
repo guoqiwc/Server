@@ -42,6 +42,7 @@ class Broadcast implements Handler {
 				array_push ( $_scTimeStampList, $pb );
 			}
 			$pb = new SCBroadCastContextNetVO ();
+			$pb->setGuid ( $row [0] );
 			$pb->setLangName ( $row [1] );
 			$pb->setIndex ( $row [3] );
 			$pb->setTitle ( $row [4] );
@@ -55,7 +56,7 @@ class Broadcast implements Handler {
 		$this->package->setScTimeStampList ( $_scTimeStampList );
 		$this->package->setScBroadCastList ( $_scBroadCastList );
 		$result->close ();
-		echo $this->package->build ()->getByteArray();
+		echo $this->package->build ()->getByteArray ();
 	}
 }
 ?>
