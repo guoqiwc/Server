@@ -1,8 +1,8 @@
 <?php
-require 'message/ByteTools.php';
+require '/message/ByteTools.php';
 /**
  * 接收协议Message:CSRequestBroadCastMessage请求获取广播信息
- * @author 雷羽佳 2014-3-1 22:11:41
+ * @author 雷羽佳 2014-3-4 18:36:12
  */
 class CSRequestBroadCastMessage
 {
@@ -55,7 +55,7 @@ class CSRequestBroadCastMessage
 
 /**
  * 发送协议Message:SCResponeBroadCastMessage服务器返回广播信息
- * @author 雷羽佳 2014-3-1 22:11:41
+ * @author 雷羽佳 2014-3-4 18:36:12
  */
 class SCResponeBroadCastMessage
 {
@@ -98,6 +98,7 @@ class SCResponeBroadCastMessage
 		$bt->writeShort ( $count );
 		for($i = 0; $i < $count; ++ $i)
 		{
+			$bt->writeInt( $this->_scBroadCastList [$i]->getGuid() );
 			$bt->writeLongString( $this->_scBroadCastList [$i]->getLangName() );
 			$bt->writeByte( $this->_scBroadCastList [$i]->getIndex() );
 			$bt->writeLongString( $this->_scBroadCastList [$i]->getTitle() );
@@ -136,7 +137,7 @@ class SCResponeBroadCastMessage
 
 /**
  * 接收协议Message:CSErrorRequestMessage软件报错的错误信息
- * @author 雷羽佳 2014-3-1 22:11:41
+ * @author 雷羽佳 2014-3-4 18:36:12
  */
 class CSErrorRequestMessage
 {
@@ -255,7 +256,7 @@ class CSErrorRequestMessage
 
 /**
  * 接收协议Message:CSRequestLoadingPageMessage客户端请求获得加载页面的每日一句语言库
- * @author 雷羽佳 2014-3-1 22:11:41
+ * @author 雷羽佳 2014-3-4 18:36:12
  */
 class CSRequestLoadingPageMessage
 {
@@ -307,7 +308,7 @@ class CSRequestLoadingPageMessage
 
 /**
  * 发送协议Message:SCResponeLoadingPageMessage服务器发送给客户端加载页面的每日一句语言库
- * @author 雷羽佳 2014-3-1 22:11:41
+ * @author 雷羽佳 2014-3-4 18:36:12
  */
 class SCResponeLoadingPageMessage
 {
@@ -360,7 +361,7 @@ class SCResponeLoadingPageMessage
 
 /**
  * 接收协议Message:CSLoginRequestMessage打开软件
- * @author 雷羽佳 2014-3-1 22:11:41
+ * @author 雷羽佳 2014-3-4 18:36:12
  */
 class CSLoginRequestMessage
 {
@@ -461,7 +462,7 @@ class CSLoginRequestMessage
 
 /**
  * 接收协议Message:CSLogoffRequestMessage关闭软件
- * @author 雷羽佳 2014-3-1 22:11:41
+ * @author 雷羽佳 2014-3-4 18:36:12
  */
 class CSLogoffRequestMessage
 {
@@ -526,7 +527,7 @@ class CSLogoffRequestMessage
 
 /**
  * 接收协议Message:CSRequestMainTitleMessage客户端请求获得主窗体标题的每日一句语言库
- * @author 雷羽佳 2014-3-1 22:11:41
+ * @author 雷羽佳 2014-3-4 18:36:12
  */
 class CSRequestMainTitleMessage
 {
@@ -578,7 +579,7 @@ class CSRequestMainTitleMessage
 
 /**
  * 发送协议Message:SCResponeMainTitleMessage服务器发送给客户端主窗体标题的每日一句语言库
- * @author 雷羽佳 2014-3-1 22:11:41
+ * @author 雷羽佳 2014-3-4 18:36:12
  */
 class SCResponeMainTitleMessage
 {
@@ -631,7 +632,7 @@ class SCResponeMainTitleMessage
 
 /**
  * 接收协议Message:CSUserBehaviorRequestMessage总体界面和状态功能性行为采集
- * @author 雷羽佳 2014-3-1 22:11:41
+ * @author 雷羽佳 2014-3-4 18:36:12
  */
 class CSUserBehaviorRequestMessage
 {
@@ -754,7 +755,7 @@ class CSUserBehaviorRequestMessage
 
 /**
  * 接收协议Message:CSUserBehaviorMainWindowRequestMessage主界面用户行为采集
- * @author 雷羽佳 2014-3-1 22:11:41
+ * @author 雷羽佳 2014-3-4 18:36:12
  */
 class CSUserBehaviorMainWindowRequestMessage
 {
@@ -903,7 +904,7 @@ class CSUserBehaviorMainWindowRequestMessage
 
 /**
  * 接收协议Message:CSUserBehaviorSuspensionWindowRequestMessage悬浮窗用户行为采集
- * @author 雷羽佳 2014-3-1 22:11:41
+ * @author 雷羽佳 2014-3-4 18:36:12
  */
 class CSUserBehaviorSuspensionWindowRequestMessage
 {
@@ -1008,7 +1009,7 @@ class CSUserBehaviorSuspensionWindowRequestMessage
 
 /**
  * 接收协议Message:CSUserBehaviorSettingWindowRequestMessage设置面板用户行为采集
- * @author 雷羽佳 2014-3-1 22:11:41
+ * @author 雷羽佳 2014-3-4 18:36:12
  */
 class CSUserBehaviorSettingWindowRequestMessage
 {
@@ -1271,7 +1272,7 @@ class CSUserBehaviorSettingWindowRequestMessage
 
 /**
  * 接收协议Message:CSUserBehaviorAboutWindowRequestMessage关于窗口用户行为采集
- * @author 雷羽佳 2014-3-1 22:11:41
+ * @author 雷羽佳 2014-3-4 18:36:12
  */
 class CSUserBehaviorAboutWindowRequestMessage
 {
@@ -1382,7 +1383,7 @@ class CSUserBehaviorAboutWindowRequestMessage
 
 /**
  * 接收协议Message:CSUserBehaviorHelpWindowRequestMessage帮助窗口用户行为采集
- * @author 雷羽佳 2014-3-1 22:11:41
+ * @author 雷羽佳 2014-3-4 18:36:12
  */
 class CSUserBehaviorHelpWindowRequestMessage
 {
@@ -1488,7 +1489,7 @@ class CSUserBehaviorHelpWindowRequestMessage
 
 /**
  * 接收协议Message:CSUserBehaviorWebshotWindowRequestMessage网页截图窗体用户行为采集
- * @author 雷羽佳 2014-3-1 22:11:41
+ * @author 雷羽佳 2014-3-4 18:36:12
  */
 class CSUserBehaviorWebshotWindowRequestMessage
 {
@@ -1597,7 +1598,7 @@ class CSUserBehaviorWebshotWindowRequestMessage
 
 /**
  * 接收协议Message:CSUserBehaviorWebshotRequestMessage网页截图用户行为采集
- * @author 雷羽佳 2014-3-1 22:11:41
+ * @author 雷羽佳 2014-3-4 18:36:12
  */
 class CSUserBehaviorWebshotRequestMessage
 {
@@ -1680,7 +1681,7 @@ class CSUserBehaviorWebshotRequestMessage
 
 /**
  * net数据包:BroadCastTimeStampNetVO当前的广播记录内容
- * @author 雷羽佳 2014-3-1 22:11:41
+ * @author 雷羽佳 2014-3-4 18:36:12
  */
 class BroadCastTimeStampNetVO
 {
@@ -1743,46 +1744,46 @@ class BroadCastTimeStampNetVO
 }
 
 /**
- * net数据包:LangNameNetVO当前拥有的语言库
- * @author 雷羽佳 2014-3-1 22:11:41
+ * net数据包:HoldTimeVO停留时间数据包
+ * @author 雷羽佳 2014-3-4 18:36:12
  */
-class LangNameNetVO
+class HoldTimeVO
 {
 	/**
-	 * 语言名
+	 * 页面停留时间
 	 * 
 	 */
-	private $_langName;
+	private $_holdTime;
 
 	public function __construct()
 	{
-		settype ( $this->_langName, 'string' );
+		settype ( $this->_holdTime, 'integer' );
 	}
 
 	/**
-	 * 语言名
-	 * @return the $_langName
+	 * 页面停留时间
+	 * @return the $_holdTime
 	 * 
 	 */
-	public function getLangName()
+	public function getHoldTime()
 	{
-		return $this->_langName;
+		return $this->_holdTime;
 	}
 
 	/**
-	 * 语言名
-	 * @return the $_langName
+	 * 页面停留时间
+	 * @return the $_holdTime
 	 * 
 	 */
-	public function setLangName($_langName)
+	public function setHoldTime($_holdTime)
 	{
-		$this->_langName = $_langName;
+		$this->_holdTime = $_holdTime;
 	}
 }
 
 /**
  * net数据包:LangContextNetVO当前拥有的语言库
- * @author 雷羽佳 2014-3-1 22:11:41
+ * @author 雷羽佳 2014-3-4 18:36:12
  */
 class LangContextNetVO
 {
@@ -1871,11 +1872,54 @@ class LangContextNetVO
 }
 
 /**
+ * net数据包:LangNameNetVO当前拥有的语言库
+ * @author 雷羽佳 2014-3-4 18:36:12
+ */
+class LangNameNetVO
+{
+	/**
+	 * 语言名
+	 * 
+	 */
+	private $_langName;
+
+	public function __construct()
+	{
+		settype ( $this->_langName, 'string' );
+	}
+
+	/**
+	 * 语言名
+	 * @return the $_langName
+	 * 
+	 */
+	public function getLangName()
+	{
+		return $this->_langName;
+	}
+
+	/**
+	 * 语言名
+	 * @return the $_langName
+	 * 
+	 */
+	public function setLangName($_langName)
+	{
+		$this->_langName = $_langName;
+	}
+}
+
+/**
  * net数据包:SCBroadCastContextNetVO服务器返回的广播内容
- * @author 雷羽佳 2014-3-1 22:11:41
+ * @author 雷羽佳 2014-3-4 18:36:12
  */
 class SCBroadCastContextNetVO
 {
+	/**
+	 * 用来标识词条数据唯一性的
+	 * 
+	 */
+	private $_guid;
 	/**
 	 * 语言名，通过这个来分组
 	 * 
@@ -1919,6 +1963,7 @@ class SCBroadCastContextNetVO
 
 	public function __construct()
 	{
+		settype ( $this->_guid, 'integer' );
 		settype ( $this->_langName, 'string' );
 		settype ( $this->_index, 'integer' );
 		settype ( $this->_title, 'string' );
@@ -1927,6 +1972,16 @@ class SCBroadCastContextNetVO
 		settype ( $this->_imageHeight, 'integer' );
 		settype ( $this->_context, 'string' );
 		settype ( $this->_link, 'string' );
+	}
+
+	/**
+	 * 用来标识词条数据唯一性的
+	 * @return the $_guid
+	 * 
+	 */
+	public function getGuid()
+	{
+		return $this->_guid;
 	}
 
 	/**
@@ -2010,6 +2065,16 @@ class SCBroadCastContextNetVO
 	}
 
 	/**
+	 * 用来标识词条数据唯一性的
+	 * @return the $_guid
+	 * 
+	 */
+	public function setGuid($_guid)
+	{
+		$this->_guid = $_guid;
+	}
+
+	/**
 	 * 语言名，通过这个来分组
 	 * @return the $_langName
 	 * 
@@ -2087,44 +2152,6 @@ class SCBroadCastContextNetVO
 	public function setLink($_link)
 	{
 		$this->_link = $_link;
-	}
-}
-
-/**
- * net数据包:HoldTimeVO停留时间数据包
- * @author 雷羽佳 2014-3-1 22:11:41
- */
-class HoldTimeVO
-{
-	/**
-	 * 页面停留时间
-	 * 
-	 */
-	private $_holdTime;
-
-	public function __construct()
-	{
-		settype ( $this->_holdTime, 'integer' );
-	}
-
-	/**
-	 * 页面停留时间
-	 * @return the $_holdTime
-	 * 
-	 */
-	public function getHoldTime()
-	{
-		return $this->_holdTime;
-	}
-
-	/**
-	 * 页面停留时间
-	 * @return the $_holdTime
-	 * 
-	 */
-	public function setHoldTime($_holdTime)
-	{
-		$this->_holdTime = $_holdTime;
 	}
 }
 
