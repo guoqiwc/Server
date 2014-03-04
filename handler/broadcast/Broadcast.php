@@ -3,8 +3,10 @@
  * 广播
  */
 class Broadcast implements Handler {
+	private $path = "http://";
 	private $package;
 	function __construct($bin) {
+		$this->path .= $_SERVER ['HTTP_HOST'] . ':' . $_SERVER ["SERVER_PORT"] . '/Resources/GetPicture.php';
 		$this->package = new CSRequestBroadCastMessage ( $bin );
 	}
 	function handle() {
@@ -46,7 +48,7 @@ class Broadcast implements Handler {
 			$pb->setLangName ( $row [1] );
 			$pb->setIndex ( $row [3] );
 			$pb->setTitle ( $row [4] );
-			$pb->setImageUrl ( $row [5] );
+			$pb->setImageUrl ( $this->path . $row [5] );
 			$pb->setImageWidth ( $row [6] );
 			$pb->setImageHeight ( $row [7] );
 			$pb->setContext ( $row [8] );
