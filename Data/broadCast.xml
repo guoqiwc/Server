@@ -15,6 +15,7 @@
 		</List>
 		
 		<List name="scBroadCastList" type="SCBroadCastContextNetVO" comment="服务器返回的广播内容">
+			<attribute name="guid" type="int" comment="用来标识词条数据唯一性的"/>
 			<attribute name="langName" type="longstring" comment="语言名，通过这个来分组"/>
 			<attribute name="index" type="byte" comment="当前内容在所在语言里的索引,通过这个排序用的，以免出现顺序错误"/>
 			<attribute name="title" type="longstring" comment="广播标题"/>
