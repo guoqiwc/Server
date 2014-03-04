@@ -6,7 +6,7 @@ class Broadcast implements Handler {
 	private $path = "http://";
 	private $package;
 	function __construct($bin) {
-		$this->path .= $_SERVER ['HTTP_HOST'] . ':' . $_SERVER ["SERVER_PORT"] . '/Resources/GetPicture.php';
+		$this->path .= $_SERVER ['HTTP_HOST'] . ':' . $_SERVER ["SERVER_PORT"] . '/Server/Resources/GetPicture.php';
 		$this->package = new CSRequestBroadCastMessage ( $bin );
 	}
 	function handle() {
