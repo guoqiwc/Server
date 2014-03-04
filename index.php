@@ -61,7 +61,8 @@ if ($bin == null || $bin == "") {
 			$handler->handle ();
 			break;
 		case 6000 :
-			new Broadcast ( $bin );
+			$handler = new Broadcast ( $bin );
+			$handler->handle ();
 			break;
 	}
 }
