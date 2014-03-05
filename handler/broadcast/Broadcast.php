@@ -53,6 +53,7 @@ class Broadcast implements Handler {
 			$pb->setImageHeight ( $row [7] );
 			$pb->setContext ( $row [8] );
 			$pb->setLink ( $row [9] );
+			$pb->setDate($row [10]);
 			array_push ( $_scBroadCastList, $pb );
 		}
 		$this->package->setScTimeStampList ( $_scTimeStampList );
