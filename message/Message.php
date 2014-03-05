@@ -1,8 +1,8 @@
 <?php
-require 'message/ByteTools.php';
+require '/message/ByteTools.php';
 /**
  * 接收协议Message:CSRequestBroadCastMessage请求获取广播信息
- * @author 雷羽佳 2014-3-4 18:36:12
+ * @author 雷羽佳 2014-3-5 15:54:10
  */
 class CSRequestBroadCastMessage
 {
@@ -55,7 +55,7 @@ class CSRequestBroadCastMessage
 
 /**
  * 发送协议Message:SCResponeBroadCastMessage服务器返回广播信息
- * @author 雷羽佳 2014-3-4 18:36:12
+ * @author 雷羽佳 2014-3-5 15:54:10
  */
 class SCResponeBroadCastMessage
 {
@@ -100,7 +100,7 @@ class SCResponeBroadCastMessage
 		{
 			$bt->writeInt( $this->_scBroadCastList [$i]->getGuid() );
 			$bt->writeLongString( $this->_scBroadCastList [$i]->getLangName() );
-			$bt->writeByte( $this->_scBroadCastList [$i]->getIndex() );
+			$bt->writeByte( $this->_scBroadCastList [$i]->getIteration() );
 			$bt->writeLongString( $this->_scBroadCastList [$i]->getTitle() );
 			$bt->writeLongString( $this->_scBroadCastList [$i]->getImageUrl() );
 			$bt->writeShort( $this->_scBroadCastList [$i]->getImageWidth() );
@@ -137,7 +137,7 @@ class SCResponeBroadCastMessage
 
 /**
  * 接收协议Message:CSErrorRequestMessage软件报错的错误信息
- * @author 雷羽佳 2014-3-4 18:36:12
+ * @author 雷羽佳 2014-3-5 15:54:10
  */
 class CSErrorRequestMessage
 {
@@ -256,7 +256,7 @@ class CSErrorRequestMessage
 
 /**
  * 接收协议Message:CSRequestLoadingPageMessage客户端请求获得加载页面的每日一句语言库
- * @author 雷羽佳 2014-3-4 18:36:12
+ * @author 雷羽佳 2014-3-5 15:54:10
  */
 class CSRequestLoadingPageMessage
 {
@@ -308,7 +308,7 @@ class CSRequestLoadingPageMessage
 
 /**
  * 发送协议Message:SCResponeLoadingPageMessage服务器发送给客户端加载页面的每日一句语言库
- * @author 雷羽佳 2014-3-4 18:36:12
+ * @author 雷羽佳 2014-3-5 15:54:10
  */
 class SCResponeLoadingPageMessage
 {
@@ -361,7 +361,7 @@ class SCResponeLoadingPageMessage
 
 /**
  * 接收协议Message:CSLoginRequestMessage打开软件
- * @author 雷羽佳 2014-3-4 18:36:12
+ * @author 雷羽佳 2014-3-5 15:54:11
  */
 class CSLoginRequestMessage
 {
@@ -462,7 +462,7 @@ class CSLoginRequestMessage
 
 /**
  * 接收协议Message:CSLogoffRequestMessage关闭软件
- * @author 雷羽佳 2014-3-4 18:36:12
+ * @author 雷羽佳 2014-3-5 15:54:11
  */
 class CSLogoffRequestMessage
 {
@@ -527,7 +527,7 @@ class CSLogoffRequestMessage
 
 /**
  * 接收协议Message:CSRequestMainTitleMessage客户端请求获得主窗体标题的每日一句语言库
- * @author 雷羽佳 2014-3-4 18:36:12
+ * @author 雷羽佳 2014-3-5 15:54:11
  */
 class CSRequestMainTitleMessage
 {
@@ -579,7 +579,7 @@ class CSRequestMainTitleMessage
 
 /**
  * 发送协议Message:SCResponeMainTitleMessage服务器发送给客户端主窗体标题的每日一句语言库
- * @author 雷羽佳 2014-3-4 18:36:12
+ * @author 雷羽佳 2014-3-5 15:54:11
  */
 class SCResponeMainTitleMessage
 {
@@ -632,7 +632,7 @@ class SCResponeMainTitleMessage
 
 /**
  * 接收协议Message:CSUserBehaviorRequestMessage总体界面和状态功能性行为采集
- * @author 雷羽佳 2014-3-4 18:36:12
+ * @author 雷羽佳 2014-3-5 15:54:11
  */
 class CSUserBehaviorRequestMessage
 {
@@ -755,7 +755,7 @@ class CSUserBehaviorRequestMessage
 
 /**
  * 接收协议Message:CSUserBehaviorMainWindowRequestMessage主界面用户行为采集
- * @author 雷羽佳 2014-3-4 18:36:12
+ * @author 雷羽佳 2014-3-5 15:54:11
  */
 class CSUserBehaviorMainWindowRequestMessage
 {
@@ -904,7 +904,7 @@ class CSUserBehaviorMainWindowRequestMessage
 
 /**
  * 接收协议Message:CSUserBehaviorSuspensionWindowRequestMessage悬浮窗用户行为采集
- * @author 雷羽佳 2014-3-4 18:36:12
+ * @author 雷羽佳 2014-3-5 15:54:11
  */
 class CSUserBehaviorSuspensionWindowRequestMessage
 {
@@ -1009,7 +1009,7 @@ class CSUserBehaviorSuspensionWindowRequestMessage
 
 /**
  * 接收协议Message:CSUserBehaviorSettingWindowRequestMessage设置面板用户行为采集
- * @author 雷羽佳 2014-3-4 18:36:12
+ * @author 雷羽佳 2014-3-5 15:54:11
  */
 class CSUserBehaviorSettingWindowRequestMessage
 {
@@ -1272,7 +1272,7 @@ class CSUserBehaviorSettingWindowRequestMessage
 
 /**
  * 接收协议Message:CSUserBehaviorAboutWindowRequestMessage关于窗口用户行为采集
- * @author 雷羽佳 2014-3-4 18:36:12
+ * @author 雷羽佳 2014-3-5 15:54:11
  */
 class CSUserBehaviorAboutWindowRequestMessage
 {
@@ -1383,7 +1383,7 @@ class CSUserBehaviorAboutWindowRequestMessage
 
 /**
  * 接收协议Message:CSUserBehaviorHelpWindowRequestMessage帮助窗口用户行为采集
- * @author 雷羽佳 2014-3-4 18:36:12
+ * @author 雷羽佳 2014-3-5 15:54:11
  */
 class CSUserBehaviorHelpWindowRequestMessage
 {
@@ -1489,7 +1489,7 @@ class CSUserBehaviorHelpWindowRequestMessage
 
 /**
  * 接收协议Message:CSUserBehaviorWebshotWindowRequestMessage网页截图窗体用户行为采集
- * @author 雷羽佳 2014-3-4 18:36:12
+ * @author 雷羽佳 2014-3-5 15:54:11
  */
 class CSUserBehaviorWebshotWindowRequestMessage
 {
@@ -1598,7 +1598,7 @@ class CSUserBehaviorWebshotWindowRequestMessage
 
 /**
  * 接收协议Message:CSUserBehaviorWebshotRequestMessage网页截图用户行为采集
- * @author 雷羽佳 2014-3-4 18:36:12
+ * @author 雷羽佳 2014-3-5 15:54:11
  */
 class CSUserBehaviorWebshotRequestMessage
 {
@@ -1680,8 +1680,330 @@ class CSUserBehaviorWebshotRequestMessage
 }
 
 /**
+ * net数据包:SCBroadCastContextNetVO服务器返回的广播内容
+ * @author 雷羽佳 2014-3-5 15:54:10
+ */
+class SCBroadCastContextNetVO
+{
+	/**
+	 * 用来标识词条数据唯一性的
+	 * 
+	 */
+	private $_guid;
+	/**
+	 * 语言名，通过这个来分组
+	 * 
+	 */
+	private $_langName;
+	/**
+	 * 当前内容在所在语言里的迭代号，从1开始。同时按照时间顺序递增。
+	 * 
+	 */
+	private $_iteration;
+	/**
+	 * 广播标题
+	 * 
+	 */
+	private $_title;
+	/**
+	 * 图标地址
+	 * 
+	 */
+	private $_imageUrl;
+	/**
+	 * 图片宽度
+	 * 
+	 */
+	private $_imageWidth;
+	/**
+	 * 图片高度
+	 * 
+	 */
+	private $_imageHeight;
+	/**
+	 * 广播内容
+	 * 
+	 */
+	private $_context;
+	/**
+	 * 当前的内容的超链接
+	 * 
+	 */
+	private $_link;
+
+	public function __construct()
+	{
+		settype ( $this->_guid, 'integer' );
+		settype ( $this->_langName, 'string' );
+		settype ( $this->_iteration, 'integer' );
+		settype ( $this->_title, 'string' );
+		settype ( $this->_imageUrl, 'string' );
+		settype ( $this->_imageWidth, 'integer' );
+		settype ( $this->_imageHeight, 'integer' );
+		settype ( $this->_context, 'string' );
+		settype ( $this->_link, 'string' );
+	}
+
+	/**
+	 * 用来标识词条数据唯一性的
+	 * @return the $_guid
+	 * 
+	 */
+	public function getGuid()
+	{
+		return $this->_guid;
+	}
+
+	/**
+	 * 语言名，通过这个来分组
+	 * @return the $_langName
+	 * 
+	 */
+	public function getLangName()
+	{
+		return $this->_langName;
+	}
+
+	/**
+	 * 当前内容在所在语言里的迭代号，从1开始。同时按照时间顺序递增。
+	 * @return the $_iteration
+	 * 
+	 */
+	public function getIteration()
+	{
+		return $this->_iteration;
+	}
+
+	/**
+	 * 广播标题
+	 * @return the $_title
+	 * 
+	 */
+	public function getTitle()
+	{
+		return $this->_title;
+	}
+
+	/**
+	 * 图标地址
+	 * @return the $_imageUrl
+	 * 
+	 */
+	public function getImageUrl()
+	{
+		return $this->_imageUrl;
+	}
+
+	/**
+	 * 图片宽度
+	 * @return the $_imageWidth
+	 * 
+	 */
+	public function getImageWidth()
+	{
+		return $this->_imageWidth;
+	}
+
+	/**
+	 * 图片高度
+	 * @return the $_imageHeight
+	 * 
+	 */
+	public function getImageHeight()
+	{
+		return $this->_imageHeight;
+	}
+
+	/**
+	 * 广播内容
+	 * @return the $_context
+	 * 
+	 */
+	public function getContext()
+	{
+		return $this->_context;
+	}
+
+	/**
+	 * 当前的内容的超链接
+	 * @return the $_link
+	 * 
+	 */
+	public function getLink()
+	{
+		return $this->_link;
+	}
+
+	/**
+	 * 用来标识词条数据唯一性的
+	 * @return the $_guid
+	 * 
+	 */
+	public function setGuid($_guid)
+	{
+		$this->_guid = $_guid;
+	}
+
+	/**
+	 * 语言名，通过这个来分组
+	 * @return the $_langName
+	 * 
+	 */
+	public function setLangName($_langName)
+	{
+		$this->_langName = $_langName;
+	}
+
+	/**
+	 * 当前内容在所在语言里的迭代号，从1开始。同时按照时间顺序递增。
+	 * @return the $_iteration
+	 * 
+	 */
+	public function setIteration($_iteration)
+	{
+		$this->_iteration = $_iteration;
+	}
+
+	/**
+	 * 广播标题
+	 * @return the $_title
+	 * 
+	 */
+	public function setTitle($_title)
+	{
+		$this->_title = $_title;
+	}
+
+	/**
+	 * 图标地址
+	 * @return the $_imageUrl
+	 * 
+	 */
+	public function setImageUrl($_imageUrl)
+	{
+		$this->_imageUrl = $_imageUrl;
+	}
+
+	/**
+	 * 图片宽度
+	 * @return the $_imageWidth
+	 * 
+	 */
+	public function setImageWidth($_imageWidth)
+	{
+		$this->_imageWidth = $_imageWidth;
+	}
+
+	/**
+	 * 图片高度
+	 * @return the $_imageHeight
+	 * 
+	 */
+	public function setImageHeight($_imageHeight)
+	{
+		$this->_imageHeight = $_imageHeight;
+	}
+
+	/**
+	 * 广播内容
+	 * @return the $_context
+	 * 
+	 */
+	public function setContext($_context)
+	{
+		$this->_context = $_context;
+	}
+
+	/**
+	 * 当前的内容的超链接
+	 * @return the $_link
+	 * 
+	 */
+	public function setLink($_link)
+	{
+		$this->_link = $_link;
+	}
+}
+
+/**
+ * net数据包:HoldTimeVO停留时间数据包
+ * @author 雷羽佳 2014-3-5 15:54:11
+ */
+class HoldTimeVO
+{
+	/**
+	 * 页面停留时间
+	 * 
+	 */
+	private $_holdTime;
+
+	public function __construct()
+	{
+		settype ( $this->_holdTime, 'integer' );
+	}
+
+	/**
+	 * 页面停留时间
+	 * @return the $_holdTime
+	 * 
+	 */
+	public function getHoldTime()
+	{
+		return $this->_holdTime;
+	}
+
+	/**
+	 * 页面停留时间
+	 * @return the $_holdTime
+	 * 
+	 */
+	public function setHoldTime($_holdTime)
+	{
+		$this->_holdTime = $_holdTime;
+	}
+}
+
+/**
+ * net数据包:LangNameNetVO当前拥有的语言库
+ * @author 雷羽佳 2014-3-5 15:54:10
+ */
+class LangNameNetVO
+{
+	/**
+	 * 语言名
+	 * 
+	 */
+	private $_langName;
+
+	public function __construct()
+	{
+		settype ( $this->_langName, 'string' );
+	}
+
+	/**
+	 * 语言名
+	 * @return the $_langName
+	 * 
+	 */
+	public function getLangName()
+	{
+		return $this->_langName;
+	}
+
+	/**
+	 * 语言名
+	 * @return the $_langName
+	 * 
+	 */
+	public function setLangName($_langName)
+	{
+		$this->_langName = $_langName;
+	}
+}
+
+/**
  * net数据包:BroadCastTimeStampNetVO当前的广播记录内容
- * @author 雷羽佳 2014-3-4 18:36:12
+ * @author 雷羽佳 2014-3-5 15:54:10
  */
 class BroadCastTimeStampNetVO
 {
@@ -1744,46 +2066,8 @@ class BroadCastTimeStampNetVO
 }
 
 /**
- * net数据包:HoldTimeVO停留时间数据包
- * @author 雷羽佳 2014-3-4 18:36:12
- */
-class HoldTimeVO
-{
-	/**
-	 * 页面停留时间
-	 * 
-	 */
-	private $_holdTime;
-
-	public function __construct()
-	{
-		settype ( $this->_holdTime, 'integer' );
-	}
-
-	/**
-	 * 页面停留时间
-	 * @return the $_holdTime
-	 * 
-	 */
-	public function getHoldTime()
-	{
-		return $this->_holdTime;
-	}
-
-	/**
-	 * 页面停留时间
-	 * @return the $_holdTime
-	 * 
-	 */
-	public function setHoldTime($_holdTime)
-	{
-		$this->_holdTime = $_holdTime;
-	}
-}
-
-/**
  * net数据包:LangContextNetVO当前拥有的语言库
- * @author 雷羽佳 2014-3-4 18:36:12
+ * @author 雷羽佳 2014-3-5 15:54:10
  */
 class LangContextNetVO
 {
@@ -1868,290 +2152,6 @@ class LangContextNetVO
 	public function setLangContent($_langContent)
 	{
 		$this->_langContent = $_langContent;
-	}
-}
-
-/**
- * net数据包:LangNameNetVO当前拥有的语言库
- * @author 雷羽佳 2014-3-4 18:36:12
- */
-class LangNameNetVO
-{
-	/**
-	 * 语言名
-	 * 
-	 */
-	private $_langName;
-
-	public function __construct()
-	{
-		settype ( $this->_langName, 'string' );
-	}
-
-	/**
-	 * 语言名
-	 * @return the $_langName
-	 * 
-	 */
-	public function getLangName()
-	{
-		return $this->_langName;
-	}
-
-	/**
-	 * 语言名
-	 * @return the $_langName
-	 * 
-	 */
-	public function setLangName($_langName)
-	{
-		$this->_langName = $_langName;
-	}
-}
-
-/**
- * net数据包:SCBroadCastContextNetVO服务器返回的广播内容
- * @author 雷羽佳 2014-3-4 18:36:12
- */
-class SCBroadCastContextNetVO
-{
-	/**
-	 * 用来标识词条数据唯一性的
-	 * 
-	 */
-	private $_guid;
-	/**
-	 * 语言名，通过这个来分组
-	 * 
-	 */
-	private $_langName;
-	/**
-	 * 当前内容在所在语言里的索引,通过这个排序用的，以免出现顺序错误
-	 * 
-	 */
-	private $_index;
-	/**
-	 * 广播标题
-	 * 
-	 */
-	private $_title;
-	/**
-	 * 图标地址
-	 * 
-	 */
-	private $_imageUrl;
-	/**
-	 * 图片宽度
-	 * 
-	 */
-	private $_imageWidth;
-	/**
-	 * 图片高度
-	 * 
-	 */
-	private $_imageHeight;
-	/**
-	 * 广播内容
-	 * 
-	 */
-	private $_context;
-	/**
-	 * 当前的内容的超链接
-	 * 
-	 */
-	private $_link;
-
-	public function __construct()
-	{
-		settype ( $this->_guid, 'integer' );
-		settype ( $this->_langName, 'string' );
-		settype ( $this->_index, 'integer' );
-		settype ( $this->_title, 'string' );
-		settype ( $this->_imageUrl, 'string' );
-		settype ( $this->_imageWidth, 'integer' );
-		settype ( $this->_imageHeight, 'integer' );
-		settype ( $this->_context, 'string' );
-		settype ( $this->_link, 'string' );
-	}
-
-	/**
-	 * 用来标识词条数据唯一性的
-	 * @return the $_guid
-	 * 
-	 */
-	public function getGuid()
-	{
-		return $this->_guid;
-	}
-
-	/**
-	 * 语言名，通过这个来分组
-	 * @return the $_langName
-	 * 
-	 */
-	public function getLangName()
-	{
-		return $this->_langName;
-	}
-
-	/**
-	 * 当前内容在所在语言里的索引,通过这个排序用的，以免出现顺序错误
-	 * @return the $_index
-	 * 
-	 */
-	public function getIndex()
-	{
-		return $this->_index;
-	}
-
-	/**
-	 * 广播标题
-	 * @return the $_title
-	 * 
-	 */
-	public function getTitle()
-	{
-		return $this->_title;
-	}
-
-	/**
-	 * 图标地址
-	 * @return the $_imageUrl
-	 * 
-	 */
-	public function getImageUrl()
-	{
-		return $this->_imageUrl;
-	}
-
-	/**
-	 * 图片宽度
-	 * @return the $_imageWidth
-	 * 
-	 */
-	public function getImageWidth()
-	{
-		return $this->_imageWidth;
-	}
-
-	/**
-	 * 图片高度
-	 * @return the $_imageHeight
-	 * 
-	 */
-	public function getImageHeight()
-	{
-		return $this->_imageHeight;
-	}
-
-	/**
-	 * 广播内容
-	 * @return the $_context
-	 * 
-	 */
-	public function getContext()
-	{
-		return $this->_context;
-	}
-
-	/**
-	 * 当前的内容的超链接
-	 * @return the $_link
-	 * 
-	 */
-	public function getLink()
-	{
-		return $this->_link;
-	}
-
-	/**
-	 * 用来标识词条数据唯一性的
-	 * @return the $_guid
-	 * 
-	 */
-	public function setGuid($_guid)
-	{
-		$this->_guid = $_guid;
-	}
-
-	/**
-	 * 语言名，通过这个来分组
-	 * @return the $_langName
-	 * 
-	 */
-	public function setLangName($_langName)
-	{
-		$this->_langName = $_langName;
-	}
-
-	/**
-	 * 当前内容在所在语言里的索引,通过这个排序用的，以免出现顺序错误
-	 * @return the $_index
-	 * 
-	 */
-	public function setIndex($_index)
-	{
-		$this->_index = $_index;
-	}
-
-	/**
-	 * 广播标题
-	 * @return the $_title
-	 * 
-	 */
-	public function setTitle($_title)
-	{
-		$this->_title = $_title;
-	}
-
-	/**
-	 * 图标地址
-	 * @return the $_imageUrl
-	 * 
-	 */
-	public function setImageUrl($_imageUrl)
-	{
-		$this->_imageUrl = $_imageUrl;
-	}
-
-	/**
-	 * 图片宽度
-	 * @return the $_imageWidth
-	 * 
-	 */
-	public function setImageWidth($_imageWidth)
-	{
-		$this->_imageWidth = $_imageWidth;
-	}
-
-	/**
-	 * 图片高度
-	 * @return the $_imageHeight
-	 * 
-	 */
-	public function setImageHeight($_imageHeight)
-	{
-		$this->_imageHeight = $_imageHeight;
-	}
-
-	/**
-	 * 广播内容
-	 * @return the $_context
-	 * 
-	 */
-	public function setContext($_context)
-	{
-		$this->_context = $_context;
-	}
-
-	/**
-	 * 当前的内容的超链接
-	 * @return the $_link
-	 * 
-	 */
-	public function setLink($_link)
-	{
-		$this->_link = $_link;
 	}
 }
 
