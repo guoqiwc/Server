@@ -46,7 +46,7 @@ class Broadcast implements Handler {
 			$pb = new SCBroadCastContextNetVO ();
 			$pb->setGuid ( $row [0] );
 			$pb->setLangName ( $row [1] );
-			$pb->setIndex ( $row [3] );
+			$pb->setIteration ( $row [3] );
 			$pb->setTitle ( $row [4] );
 			$pb->setImageUrl ( $this->path . $row [5] );
 			$pb->setImageWidth ( $row [6] );
