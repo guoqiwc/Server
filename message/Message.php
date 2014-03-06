@@ -2,7 +2,7 @@
 require 'message/ByteTools.php';
 /**
  * 接收协议Message:CSRequestBroadCastMessage请求获取广播信息
- * @author 雷羽佳 2014-3-5 19:9:31
+ * @author 雷羽佳 2014-3-6 18:36:7
  */
 class CSRequestBroadCastMessage
 {
@@ -55,7 +55,7 @@ class CSRequestBroadCastMessage
 
 /**
  * 发送协议Message:SCResponeBroadCastMessage服务器返回广播信息
- * @author 雷羽佳 2014-3-5 19:9:31
+ * @author 雷羽佳 2014-3-6 18:36:7
  */
 class SCResponeBroadCastMessage
 {
@@ -138,7 +138,7 @@ class SCResponeBroadCastMessage
 
 /**
  * 接收协议Message:CSErrorRequestMessage软件报错的错误信息
- * @author 雷羽佳 2014-3-5 19:9:31
+ * @author 雷羽佳 2014-3-6 18:36:7
  */
 class CSErrorRequestMessage
 {
@@ -257,7 +257,7 @@ class CSErrorRequestMessage
 
 /**
  * 接收协议Message:CSRequestLoadingPageMessage客户端请求获得加载页面的每日一句语言库
- * @author 雷羽佳 2014-3-5 19:9:31
+ * @author 雷羽佳 2014-3-6 18:36:7
  */
 class CSRequestLoadingPageMessage
 {
@@ -309,7 +309,7 @@ class CSRequestLoadingPageMessage
 
 /**
  * 发送协议Message:SCResponeLoadingPageMessage服务器发送给客户端加载页面的每日一句语言库
- * @author 雷羽佳 2014-3-5 19:9:31
+ * @author 雷羽佳 2014-3-6 18:36:7
  */
 class SCResponeLoadingPageMessage
 {
@@ -362,7 +362,7 @@ class SCResponeLoadingPageMessage
 
 /**
  * 接收协议Message:CSLoginRequestMessage打开软件
- * @author 雷羽佳 2014-3-5 19:9:31
+ * @author 雷羽佳 2014-3-6 18:36:7
  */
 class CSLoginRequestMessage
 {
@@ -463,7 +463,7 @@ class CSLoginRequestMessage
 
 /**
  * 接收协议Message:CSLogoffRequestMessage关闭软件
- * @author 雷羽佳 2014-3-5 19:9:31
+ * @author 雷羽佳 2014-3-6 18:36:7
  */
 class CSLogoffRequestMessage
 {
@@ -485,14 +485,37 @@ class CSLogoffRequestMessage
 	 */
 	private $_macId;
 
+	/**
+	 * 是否是上次退出的，0为不是上次退出（即本次退出），1为是上次退出的结果
+	 * 
+	 */
+	private $_isPrevious;
+
+	/**
+	 * 同5000号协议协议包，用于在软件关闭的时候，默认发送所有功能关闭
+	 * 
+	 */
+	public $_userBehaviorCloseList = array ();
+
 	public function __construct($bin) 
 	{
 		settype ( $this->_timeStamp, 'string' );
 		settype ( $this->_macId, 'string' );
+		settype ( $this->_isPrevious, 'integer' );
 		$bt = new ByteTools ( $bin );
 		$bt->setPosition ( 20 );
 		$this->_timeStamp = $bt->readLongString();
 		$this->_macId = $bt->readLongString();
+		$this->_isPrevious = $bt->readByte();
+		$count = $bt->readShort ();
+		for($i = 0; $i < $count; ++ $i)
+		{
+			$pb = new UserBehaviorCloseNetVO ();
+			$pb->setType ( $bt->readShort() );
+			$pb->setDuration ( $bt->readInt() );
+			$pb->setTimeStamp ( $bt->readLongString() );
+			array_push ( $this->_userBehaviorCloseList, $pb);
+		}
 	}
 
 	/**
@@ -524,11 +547,31 @@ class CSLogoffRequestMessage
 	{
 		return $this->_macId;
 	}
+
+	/**
+	 * 是否是上次退出的，0为不是上次退出（即本次退出），1为是上次退出的结果
+	 * @return the $_isPrevious
+	 * 
+	 */
+	public function getIsPrevious()
+	{
+		return $this->_isPrevious;
+	}
+
+	/**
+	 * 同5000号协议协议包，用于在软件关闭的时候，默认发送所有功能关闭
+	 * @return the $_userBehaviorCloseList
+	 * 
+	 */
+	public function getUserBehaviorCloseList()
+	{
+		return $this->_userBehaviorCloseList;
+	}
 }
 
 /**
  * 接收协议Message:CSRequestMainTitleMessage客户端请求获得主窗体标题的每日一句语言库
- * @author 雷羽佳 2014-3-5 19:9:31
+ * @author 雷羽佳 2014-3-6 18:36:7
  */
 class CSRequestMainTitleMessage
 {
@@ -580,7 +623,7 @@ class CSRequestMainTitleMessage
 
 /**
  * 发送协议Message:SCResponeMainTitleMessage服务器发送给客户端主窗体标题的每日一句语言库
- * @author 雷羽佳 2014-3-5 19:9:31
+ * @author 雷羽佳 2014-3-6 18:36:7
  */
 class SCResponeMainTitleMessage
 {
@@ -633,7 +676,7 @@ class SCResponeMainTitleMessage
 
 /**
  * 接收协议Message:CSUserBehaviorRequestMessage总体界面和状态功能性行为采集
- * @author 雷羽佳 2014-3-5 19:9:31
+ * @author 雷羽佳 2014-3-6 18:36:7
  */
 class CSUserBehaviorRequestMessage
 {
@@ -756,7 +799,7 @@ class CSUserBehaviorRequestMessage
 
 /**
  * 接收协议Message:CSUserBehaviorMainWindowRequestMessage主界面用户行为采集
- * @author 雷羽佳 2014-3-5 19:9:31
+ * @author 雷羽佳 2014-3-6 18:36:7
  */
 class CSUserBehaviorMainWindowRequestMessage
 {
@@ -905,7 +948,7 @@ class CSUserBehaviorMainWindowRequestMessage
 
 /**
  * 接收协议Message:CSUserBehaviorSuspensionWindowRequestMessage悬浮窗用户行为采集
- * @author 雷羽佳 2014-3-5 19:9:31
+ * @author 雷羽佳 2014-3-6 18:36:7
  */
 class CSUserBehaviorSuspensionWindowRequestMessage
 {
@@ -1010,7 +1053,7 @@ class CSUserBehaviorSuspensionWindowRequestMessage
 
 /**
  * 接收协议Message:CSUserBehaviorSettingWindowRequestMessage设置面板用户行为采集
- * @author 雷羽佳 2014-3-5 19:9:31
+ * @author 雷羽佳 2014-3-6 18:36:7
  */
 class CSUserBehaviorSettingWindowRequestMessage
 {
@@ -1273,7 +1316,7 @@ class CSUserBehaviorSettingWindowRequestMessage
 
 /**
  * 接收协议Message:CSUserBehaviorAboutWindowRequestMessage关于窗口用户行为采集
- * @author 雷羽佳 2014-3-5 19:9:31
+ * @author 雷羽佳 2014-3-6 18:36:7
  */
 class CSUserBehaviorAboutWindowRequestMessage
 {
@@ -1384,7 +1427,7 @@ class CSUserBehaviorAboutWindowRequestMessage
 
 /**
  * 接收协议Message:CSUserBehaviorHelpWindowRequestMessage帮助窗口用户行为采集
- * @author 雷羽佳 2014-3-5 19:9:31
+ * @author 雷羽佳 2014-3-6 18:36:7
  */
 class CSUserBehaviorHelpWindowRequestMessage
 {
@@ -1490,7 +1533,7 @@ class CSUserBehaviorHelpWindowRequestMessage
 
 /**
  * 接收协议Message:CSUserBehaviorWebshotWindowRequestMessage网页截图窗体用户行为采集
- * @author 雷羽佳 2014-3-5 19:9:31
+ * @author 雷羽佳 2014-3-6 18:36:7
  */
 class CSUserBehaviorWebshotWindowRequestMessage
 {
@@ -1599,7 +1642,7 @@ class CSUserBehaviorWebshotWindowRequestMessage
 
 /**
  * 接收协议Message:CSUserBehaviorWebshotRequestMessage网页截图用户行为采集
- * @author 雷羽佳 2014-3-5 19:9:31
+ * @author 雷羽佳 2014-3-6 18:36:7
  */
 class CSUserBehaviorWebshotRequestMessage
 {
@@ -1681,84 +1724,8 @@ class CSUserBehaviorWebshotRequestMessage
 }
 
 /**
- * net数据包:HoldTimeVO停留时间数据包
- * @author 雷羽佳 2014-3-5 19:9:31
- */
-class HoldTimeVO
-{
-	/**
-	 * 页面停留时间
-	 * 
-	 */
-	private $_holdTime;
-
-	public function __construct()
-	{
-		settype ( $this->_holdTime, 'integer' );
-	}
-
-	/**
-	 * 页面停留时间
-	 * @return the $_holdTime
-	 * 
-	 */
-	public function getHoldTime()
-	{
-		return $this->_holdTime;
-	}
-
-	/**
-	 * 页面停留时间
-	 * @return the $_holdTime
-	 * 
-	 */
-	public function setHoldTime($_holdTime)
-	{
-		$this->_holdTime = $_holdTime;
-	}
-}
-
-/**
- * net数据包:LangNameNetVO当前拥有的语言库
- * @author 雷羽佳 2014-3-5 19:9:31
- */
-class LangNameNetVO
-{
-	/**
-	 * 语言名
-	 * 
-	 */
-	private $_langName;
-
-	public function __construct()
-	{
-		settype ( $this->_langName, 'string' );
-	}
-
-	/**
-	 * 语言名
-	 * @return the $_langName
-	 * 
-	 */
-	public function getLangName()
-	{
-		return $this->_langName;
-	}
-
-	/**
-	 * 语言名
-	 * @return the $_langName
-	 * 
-	 */
-	public function setLangName($_langName)
-	{
-		$this->_langName = $_langName;
-	}
-}
-
-/**
  * net数据包:LangContextNetVO当前拥有的语言库
- * @author 雷羽佳 2014-3-5 19:9:31
+ * @author 雷羽佳 2014-3-6 18:36:7
  */
 class LangContextNetVO
 {
@@ -1848,7 +1815,7 @@ class LangContextNetVO
 
 /**
  * net数据包:BroadCastTimeStampNetVO当前的广播记录内容
- * @author 雷羽佳 2014-3-5 19:9:31
+ * @author 雷羽佳 2014-3-6 18:36:7
  */
 class BroadCastTimeStampNetVO
 {
@@ -1911,8 +1878,46 @@ class BroadCastTimeStampNetVO
 }
 
 /**
+ * net数据包:LangNameNetVO当前拥有的语言库
+ * @author 雷羽佳 2014-3-6 18:36:7
+ */
+class LangNameNetVO
+{
+	/**
+	 * 语言名
+	 * 
+	 */
+	private $_langName;
+
+	public function __construct()
+	{
+		settype ( $this->_langName, 'string' );
+	}
+
+	/**
+	 * 语言名
+	 * @return the $_langName
+	 * 
+	 */
+	public function getLangName()
+	{
+		return $this->_langName;
+	}
+
+	/**
+	 * 语言名
+	 * @return the $_langName
+	 * 
+	 */
+	public function setLangName($_langName)
+	{
+		$this->_langName = $_langName;
+	}
+}
+
+/**
  * net数据包:SCBroadCastContextNetVO服务器返回的广播内容
- * @author 雷羽佳 2014-3-5 19:9:31
+ * @author 雷羽佳 2014-3-6 18:36:7
  */
 class SCBroadCastContextNetVO
 {
@@ -2179,6 +2184,170 @@ class SCBroadCastContextNetVO
 	public function setLink($_link)
 	{
 		$this->_link = $_link;
+	}
+}
+
+/**
+ * net数据包:UserBehaviorCloseNetVO同5000号协议协议包，用于在软件关闭的时候，默认发送所有功能关闭
+ * @author 雷羽佳 2014-3-6 18:36:7
+ */
+class UserBehaviorCloseNetVO
+{
+	/**
+	 * 
+		类型
+		0:打开关闭主界面
+		1:打开关闭悬浮穿
+		2:打开关闭设置面板
+		3:打开关闭网页截图任务窗
+		4:打开关闭关于窗口
+		5:打开关闭帮助窗口
+		6:打开关闭屏幕取色
+		7:打开关闭网页截图色彩分析
+		8:打开关闭url监听
+		9:打开关闭新闻广播窗口
+		
+	 * 
+	 */
+	private $_type;
+	/**
+	 * 开启的持续时间
+	 * 
+	 */
+	private $_duration;
+	/**
+	 * 打开本功能的当前本地时间
+	 * 
+	 */
+	private $_timeStamp;
+
+	public function __construct()
+	{
+		settype ( $this->_type, 'integer' );
+		settype ( $this->_duration, 'integer' );
+		settype ( $this->_timeStamp, 'string' );
+	}
+
+	/**
+	 * 
+		类型
+		0:打开关闭主界面
+		1:打开关闭悬浮穿
+		2:打开关闭设置面板
+		3:打开关闭网页截图任务窗
+		4:打开关闭关于窗口
+		5:打开关闭帮助窗口
+		6:打开关闭屏幕取色
+		7:打开关闭网页截图色彩分析
+		8:打开关闭url监听
+		9:打开关闭新闻广播窗口
+		
+	 * @return the $_type
+	 * 
+	 */
+	public function getType()
+	{
+		return $this->_type;
+	}
+
+	/**
+	 * 开启的持续时间
+	 * @return the $_duration
+	 * 
+	 */
+	public function getDuration()
+	{
+		return $this->_duration;
+	}
+
+	/**
+	 * 打开本功能的当前本地时间
+	 * @return the $_timeStamp
+	 * 
+	 */
+	public function getTimeStamp()
+	{
+		return $this->_timeStamp;
+	}
+
+	/**
+	 * 
+		类型
+		0:打开关闭主界面
+		1:打开关闭悬浮穿
+		2:打开关闭设置面板
+		3:打开关闭网页截图任务窗
+		4:打开关闭关于窗口
+		5:打开关闭帮助窗口
+		6:打开关闭屏幕取色
+		7:打开关闭网页截图色彩分析
+		8:打开关闭url监听
+		9:打开关闭新闻广播窗口
+		
+	 * @return the $_type
+	 * 
+	 */
+	public function setType($_type)
+	{
+		$this->_type = $_type;
+	}
+
+	/**
+	 * 开启的持续时间
+	 * @return the $_duration
+	 * 
+	 */
+	public function setDuration($_duration)
+	{
+		$this->_duration = $_duration;
+	}
+
+	/**
+	 * 打开本功能的当前本地时间
+	 * @return the $_timeStamp
+	 * 
+	 */
+	public function setTimeStamp($_timeStamp)
+	{
+		$this->_timeStamp = $_timeStamp;
+	}
+}
+
+/**
+ * net数据包:HoldTimeVO停留时间数据包
+ * @author 雷羽佳 2014-3-6 18:36:7
+ */
+class HoldTimeVO
+{
+	/**
+	 * 页面停留时间
+	 * 
+	 */
+	private $_holdTime;
+
+	public function __construct()
+	{
+		settype ( $this->_holdTime, 'integer' );
+	}
+
+	/**
+	 * 页面停留时间
+	 * @return the $_holdTime
+	 * 
+	 */
+	public function getHoldTime()
+	{
+		return $this->_holdTime;
+	}
+
+	/**
+	 * 页面停留时间
+	 * @return the $_holdTime
+	 * 
+	 */
+	public function setHoldTime($_holdTime)
+	{
+		$this->_holdTime = $_holdTime;
 	}
 }
 
