@@ -9,5 +9,24 @@
 	<sendMessage id="1002" type="CS_LOGOFF" name="CSLogoffRequest" comment="关闭软件">
 		<attribute name="timeStamp" type="longstring" comment="当前本地时间"/>
 		<attribute name="macId" type="longstring" comment="用户mac地址"/>
+		<attribute name="isPrevious" type="byte" comment="是否是上次退出的，0为不是上次退出（即本次退出），1为是上次退出的结果"/>
+		<List name="userBehaviorCloseList" type="UserBehaviorCloseNetVO" comment="同5000号协议协议包，用于在软件关闭的时候，默认发送所有功能关闭">
+			<attribute name="type" type="short" comment="
+		类型
+		0:打开关闭主界面
+		1:打开关闭悬浮穿
+		2:打开关闭设置面板
+		3:打开关闭网页截图任务窗
+		4:打开关闭关于窗口
+		5:打开关闭帮助窗口
+		6:打开关闭屏幕取色
+		7:打开关闭网页截图色彩分析
+		8:打开关闭url监听
+		9:打开关闭新闻广播窗口
+		"
+		/>
+			<attribute name="duration" type="int" comment="开启的持续时间"/>
+			<attribute name="timeStamp" type="longstring" comment="打开本功能的当前本地时间"/>
+		</List>
 	</sendMessage>
 </root>
