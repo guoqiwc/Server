@@ -1,5 +1,4 @@
 <?php
-echo 'http://' . $_SERVER ['SERVER_NAME'] . ':' . $_SERVER ["SERVER_PORT"] . $_SERVER ["REQUEST_URI"];
 if ($_GET == null || $_GET["name"] == null) {
 	return;
 }
