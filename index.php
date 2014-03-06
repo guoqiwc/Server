@@ -1,7 +1,6 @@
 <?php
 require "message/Message.php";
 require "util/Mysql.php";
-
 interface Handler {
 	// 处理函数
 	function handle();
@@ -20,14 +19,14 @@ require "handler/behavior/BehaviorMainWindow.php";
 require "handler/behavior/BehaviorAllWindow.php";
 require "handler/behavior/WebshotWindow.php";
 require "handler/behavior/Webshot.php";
-
-//require "Resources/GetPicture.php";
+require "handler/behavior/BroadcastBehavior.php";
+// require "Resources/GetPicture.php";
 $bin = file_get_contents ( "php://input" );
 if ($bin == null || $bin == "") {
 } else {
 	$messageByte = substr ( $bin, 6, 2 );
 	$data = unpack ( "s", $messageByte );
-	switch ($data[1]) {
+	switch ($data [1]) {
 		case 1000 :
 			$handler = new Login ( $bin );
 			$handler->handle ();
@@ -78,6 +77,10 @@ if ($bin == null || $bin == "") {
 			break;
 		case 5014 :
 			$handler = new Webshot ( $bin );
+			$handler->handle ();
+			break;
+		case 5016 :
+			$handler = new BroadcastBehavior ( $bin );
 			$handler->handle ();
 			break;
 		case 6000 :
