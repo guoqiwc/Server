@@ -16,7 +16,7 @@ class Logout implements Handler {
 		$login = 0; // 1为登陆 0为退出
 		$mysql = Mysql::getInstence ();
 		if ($this->package->getIsPrevious () == 1) {
-			$sql = "SELECT * FROM t_login WHERE mac = $mac AND time = $time AND login = 0;";
+			$sql = "SELECT * FROM t_login WHERE mac = '$mac' AND time = '$time' AND login = 0;";
 			$result = $mysql->query ( $sql );
 			if ($result->num_rows > 0) {
 				return;
