@@ -1,5 +1,5 @@
 <?php
-require '/message/ByteTools.php';
+require 'message/ByteTools.php';
 /**
  * 接收协议Message:CSRequestBroadCastMessage请求获取广播信息
  * @author 雷羽佳 2014-3-7 0:18:56
