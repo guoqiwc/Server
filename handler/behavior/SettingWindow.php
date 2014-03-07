@@ -22,8 +22,9 @@ class SettingWindow implements Handler {
 		$paletteHueLevel = $this->package->getPaletteHueLevel ();
 		$paletteSaturationLevel = $this->package->getPaletteSaturationLevel ();
 		$paletteBrightnessLevel = $this->package->getPaletteBrightnessLevel ();
+		$isChangedDefaultPath = $this->package->getIsChangedDefaultPath();
 		$mysql = Mysql::getInstence ();
-		$sql = "INSERT INTO `t_setting_window_b`(ip,mac,time,launch_after_boot,default_path,color_type,language,load_over_time,load_refresh_time,color_bee_level,color_bee_size,palette_hue_level,palette_saturation_level,palette_brightness_level) VALUES ('$ip','$mac','$timeStamp','$launchAfterBoot','$defaultPath' , '$colorType','$language','$loadOverTime','$loadRefreshTime','$colorBeeLevel','$colorBeeSize','$paletteHueLevel','$paletteSaturationLevel','$paletteBrightnessLevel');";
+		$sql = "INSERT INTO `t_setting_window_b`(ip,mac,time,launch_after_boot,default_path,color_type,language,load_over_time,load_refresh_time,color_bee_level,color_bee_size,palette_hue_level,palette_saturation_level,palette_brightness_level,is_changed_default_path) VALUES ('$ip','$mac','$timeStamp','$launchAfterBoot','$defaultPath' , '$colorType','$language','$loadOverTime','$loadRefreshTime','$colorBeeLevel','$colorBeeSize','$paletteHueLevel','$paletteSaturationLevel','$paletteBrightnessLevel','$isChangedDefaultPath');";
 		$mysql->insert ( $sql );
 		return;
 	}
