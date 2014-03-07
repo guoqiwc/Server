@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : www.symenty.com
+Source Server         : symenty
 Source Server Version : 50532
 Source Host           : www.symenty.com:3306
 Source Database       : symentyc_server
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50532
 File Encoding         : 65001
 
-Date: 2014-03-04 23:35:33
+Date: 2014-03-07 17:26:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -66,17 +66,36 @@ CREATE TABLE `t_broadcast` (
   `image_height` int(5) unsigned DEFAULT NULL COMMENT '图片高度',
   `context` text COLLATE utf8_bin COMMENT '广播内容',
   `link` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '超链接地址',
+  `push_date` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_language_time` (`language`,`time`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of t_broadcast
 -- ----------------------------
-INSERT INTO `t_broadcast` VALUES ('1', 'zh-CN', '0', '1', '第一张图片', '?name=1.jpg', '109', '119', 0xE68891E698AFE7ACACE4B880E5BCA0E59BBEE78987E38082, 'www.symenty.com');
-INSERT INTO `t_broadcast` VALUES ('2', 'en-US', '0', '2', 'SB Guolaoshi', '?name=1.jpg', '109', '119', 0x4920616D204F6E65205069632E204655434B43594F55EFBC81, 'www.symenty.com');
-INSERT INTO `t_broadcast` VALUES ('3', 'zh-CN', '1', '3', '第二张图片', '?name=2.jpg', '153', '99', 0xE68891E698AFE7ACACE4BA8CE5BCA0E59BBEE78987E38082, 'www.symenty.com');
-INSERT INTO `t_broadcast` VALUES ('4', 'en-US', '1', '4', 'Fuck LYJ', '?name=2.jpg', '153', '99', 0x4920616D2054776F205069632E204920616D20746865204B494E47EFBC81, 'www.symenty.com');
+INSERT INTO `t_broadcast` VALUES ('1', 'zh-CN', '0', '1', '第一张图片', '?name=1.jpg', '109', '119', 0xE68891E698AFE7ACACE4B880E5BCA0E59BBEE78987E3808254696D65E6898DE698AFE79C9FE6ADA3E79A84E8BFADE4BBA3E58FB7E38082E588ABE7AEA1696E646578EFBC81EFBC81, 'http://www.symenty.com', '2014.9.9');
+INSERT INTO `t_broadcast` VALUES ('2', 'en-US', '0', '1', 'SB Guolaoshi', '?name=1.jpg', '109', '119', 0x4920616D204F6E65205069632E204655434B43594F55EFBC81, 'http://www.symenty.com', '2014.9.10');
+INSERT INTO `t_broadcast` VALUES ('3', 'zh-CN', '1', '2', '第二张图片', '?name=2.jpg', '153', '99', 0xE68891E698AFE7ACACE4BA8CE5BCA0E59BBEE78987E38082, 'http://www.symenty.com', '2014.9.11');
+INSERT INTO `t_broadcast` VALUES ('4', 'en-US', '1', '2', 'Fuck LYJ', '?name=2.jpg', '153', '99', 0x4920616D2054776F205069632E204920616D20746865204B494E47EFBC81, 'http://www.symenty.com', '2014.9.12');
+INSERT INTO `t_broadcast` VALUES ('5', 'en-US', '3', '3', 'SB CYOU', '?name=2.jpg', '153', '99', 0x43594F55E3808257514E4D4C4742EFBC81, 'http://www.symenty.com', '2014.9.13');
+
+-- ----------------------------
+-- Table structure for t_broadcast_b
+-- ----------------------------
+DROP TABLE IF EXISTS `t_broadcast_b`;
+CREATE TABLE `t_broadcast_b` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ip` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `mac` varchar(60) COLLATE utf8_bin DEFAULT NULL,
+  `boradcast_guid` int(10) unsigned DEFAULT NULL COMMENT '类型',
+  `time` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '时间戳',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+-- Records of t_broadcast_b
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_error
@@ -88,9 +107,9 @@ CREATE TABLE `t_error` (
   `mac` varchar(60) COLLATE utf8_bin DEFAULT NULL,
   `ip` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `os` varchar(50) COLLATE utf8_bin DEFAULT NULL,
-  `version` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `version` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `time` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `error_message` text COLLATE utf8_bin COMMENT '错误信息',
+  `得逼` text COLLATE utf8_bin COMMENT '错误信息',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -152,10 +171,11 @@ CREATE TABLE `t_login` (
   `mac` varchar(60) COLLATE utf8_bin DEFAULT NULL,
   `ip` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `os` varchar(50) COLLATE utf8_bin DEFAULT NULL,
-  `version` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `version` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `time` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `login` tinyint(1) unsigned DEFAULT NULL COMMENT '1为登陆 0为退出',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `index_m_t_l` (`mac`,`time`,`login`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
@@ -199,6 +219,7 @@ CREATE TABLE `t_setting_window_b` (
   `palette_hue_level` int(10) DEFAULT NULL,
   `palette_saturation_level` int(10) DEFAULT NULL,
   `palette_brightness_level` int(10) DEFAULT NULL,
+  `is_changed_default_path` tinyint(1) DEFAULT NULL COMMENT '是否改变了默认路径，0为否，1为是',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -234,7 +255,7 @@ CREATE TABLE `t_title` (
   `content` text COLLATE utf8_bin,
   PRIMARY KEY (`id`),
   KEY `language_index` (`language`,`index`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of t_title
