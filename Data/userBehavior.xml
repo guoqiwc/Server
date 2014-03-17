@@ -1,231 +1,158 @@
-<!--50000打头，用户行为埋点-->
+<!--50000打头，用户行为埋点 -->
 <root>
-
-	<!--
-	0:打开关闭主界面~
-	1:打开关闭悬浮穿~
-	2:打开关闭设置面板~
-	3:打开关闭网页截图任务窗~
-	4:打开关闭关于窗口~
-	5:打开关闭帮助窗口~
-	6:打开关闭屏幕取色~
-	7:打开关闭网页截图色彩分析
-	8:打开关闭url监听
-	9:打开关闭新闻广播窗口
-	-->
-	<sendMessage id="5000" type="CS_SEND_USER_BEHAVIOR" name="CSUserBehaviorRequest" comment="总体界面和状态功能性行为采集">
-		<attribute name="type" type="short" comment="
-		类型
-		0:打开关闭主界面
-		1:打开关闭悬浮穿
-		2:打开关闭设置面板
-		3:打开关闭网页截图任务窗
-		4:打开关闭关于窗口
-		5:打开关闭帮助窗口
-		6:打开关闭屏幕取色
-		7:打开关闭网页截图色彩分析
-		8:打开关闭url监听
-		9:打开关闭新闻广播窗口
-		"
-		/>
-		<attribute name="duration" type="int" comment="开启的持续时间"/>
-		<attribute name="timeStamp" type="longstring" comment="打开本功能的当前本地时间"/>
-		<attribute name="macId" type="longstring" comment="用户mac地址"/>
-	</sendMessage>
-	
-	<!--
-		0:点击打开文件~
-		1:保存项目文件(无图)~
-		2:保存项目文件(分析中)~
-		3:保存项目文件(有图)~
-		4:保存项目文件(保存成功)~
-		5:保存图片快照(无图)~
-		6:保存图片快照(分析中)~
-		7:保存图片快照(有图)~
-		8:保存图片快照(保存成功)~
-		9:屏幕截图~
-		10:开启屏幕取色~
-		11:关闭屏幕取色~
-		12:开启网页截图分析~
-		13:关闭网页截图分析~
-		14:开启url监听~
-		15:关闭url监听~
-		16:打开图片~
-		17:打开项目~
-		18:点击放大~
-		19:点击缩小~
-		20:点击分析(无图)~
-		21:点击分析(有图)~
-		22:点击删除~
-		23:点击添加颜色~
-		24:点击编辑颜色~
-		25:点击导出aco色板(无色板)~
-		26:点击导出aco色板(有色板)~
-		27:点击导出aco色板(导出完成)~
-		28:点击导出ase色板(无色板)~
-		29:点击导出ase色板(有色板)~
-		30:点击导出ase色板(导出完成)~
-	-->
-	<sendMessage id="5002" type="CS_SEND_USER_BEHAVIOR_MAIN_WINDOW" name="CSUserBehaviorMainWindowRequest" comment="主界面用户行为采集">
-		<attribute name="type" type="short" comment="
-		类型
-		0:点击打开文件~
-		1:保存项目文件(无图)~
-		2:保存项目文件(分析中)~
-		3:保存项目文件(有图)~
-		4:保存项目文件(保存成功)~
-		5:保存图片快照(无图)~
-		6:保存图片快照(分析中)~
-		7:保存图片快照(有图)~
-		8:保存图片快照(保存成功)~
-		9:屏幕截图~
-		10:开启屏幕取色~
-		11:关闭屏幕取色~
-		12:开启网页截图分析~
-		13:关闭网页截图分析~
-		14:开启url监听~
-		15:关闭url监听~
-		16:打开图片~
-		17:打开项目~
-		18:点击放大~
-		19:点击缩小~
-		20:点击分析(无图)~
-		21:点击分析(有图)~
-		22:点击删除~
-		23:点击添加颜色~
-		24:点击编辑颜色~
-		25:点击导出aco色板(无色板)~
-		26:点击导出aco色板(有色板)~
-		27:点击导出aco色板(导出完成)~
-		28:点击导出ase色板(无色板)~
-		29:点击导出ase色板(有色板)~
-		30:点击导出ase色板(导出完成)~
-		"
-		/>
-		<attribute name="timeStamp" type="longstring" comment="当前本地时间"/>
-		<attribute name="macId" type="longstring" comment="用户mac地址"/>
-	</sendMessage>
-	
-	<!--悬浮窗用户行为采集
-		0:点击开始加载~
-		1:点击暂停加载~
-		2:点击截图~
-		3:点击取色开~
-		4:点击取色关~
-		5:点击web色彩分析开~
-		6:点击web色彩分析关~
-		7:点击url监听开~
-		8:点击url监听关~
-	-->
-	<sendMessage id="5004" type="CS_SEND_USER_BEHAVIOR_SUSPENSION_WINDOW" name="CSUserBehaviorSuspensionWindowRequest" comment="悬浮窗用户行为采集">
+	<sendMessage id="5000" type="CS_SEND_USER_BEHAVIOR" name="CSUserBehaviorRequest" comment="全部用户行为的采集发送">
+		<!-- 0:打开关闭主界面~ 1:打开关闭悬浮穿~ 2:打开关闭设置面板~ 3:打开关闭网页截图任务窗~ 4:打开关闭关于窗口~ 5:打开关闭帮助窗口~ 6:打开关闭屏幕取色~ 7:打开关闭网页截图色彩分析 8:打开关闭url监听 9:打开关闭新闻广播窗口 10:打开关闭软件本身 -->
+		<List name="durationList" type="DurationNetVO" comment="总体界面和状态功能性行为采集">
 			<attribute name="type" type="short" comment="
-		类型
-		0:点击开始加载
-		1:点击暂停加载
-		2:点击截图
-		3:点击取色开
-		4:点击取色关
-		5:点击web色彩分析开
-		6:点击web色彩分析关
-		7:点击url监听开
-		8:点击url监听关
-		"
-		/>
-		<attribute name="timeStamp" type="longstring" comment="当前本地时间"/>
-		<attribute name="macId" type="longstring" comment="用户mac地址"/>
-	</sendMessage>
-	
-	<!--设置页面用户行为采集~-->
-	<sendMessage id="5006" type="CS_SEND_USER_BEHAVIOR_SETTING_WINDOW" name="CSUserBehaviorSettingWindowRequest" comment="设置面板用户行为采集">
-		<attribute name="launchAfterBoot" type="byte" comment="开机启动，0关闭，1开启"/>
-		<attribute name="defaultPath" type="longstring" comment="默认保存路径"/>
-		<attribute name="colorType" type="byte" comment="取色类型，0:hex,1:#+hex,2:rgb"/>
-		<attribute name="language" type="longstring" comment="语言"/>
-		<attribute name="loadOverTime" type="int" comment="加载超时时间"/>
-		<attribute name="loadRefreshTime" type="int" comment="加载刷新时间"/>
-		<attribute name="colorBeeLevel" type="short" comment="蜂巢级别"/>
-		<attribute name="colorBeeSize" type="short" comment="蜂巢尺寸"/>
-		<attribute name="paletteHueLevel" type="short" comment="色板色相级别"/>
-		<attribute name="paletteSaturationLevel" type="short" comment="色板饱和度级别"/>
-		<attribute name="paletteBrightnessLevel" type="short" comment="色板明度级别"/>
-		<attribute name="timeStamp" type="longstring" comment="当前本地时间"/>
-		<attribute name="macId" type="longstring" comment="用户mac地址"/>
-		<attribute name="isChangedDefaultPath" type="byte" comment="是否改变了默认路径，0为否，1为是"/>
-	</sendMessage>
-	
-	<!--
-	0:点击第1个人~
-	1:点击第2个人~
-	2:点击第3个人~
-	3:点击第4个人~
-	-->
-	<sendMessage id="5008" type="CS_SEND_USER_BEHAVIOR_ABOUT_WINDOW" name="CSUserBehaviorAboutWindowRequest" comment="关于窗口用户行为采集">
-		<attribute name="type" type="short" comment="
-		类型	
-		0:点击第1个人
-		1:点击第2个人
-		2:点击第3个人
-		3:点击第4个人"
-		/>
-		<attribute name="state" type="byte" comment="0:点击头像，1:点击微博链接"/>
-		<attribute name="timeStamp" type="longstring" comment="当前本地时间"/>
-		<attribute name="macId" type="longstring" comment="用户mac地址"/>
-	</sendMessage>
-	
-	<!--帮助页面用户行为采集~-->
-	<sendMessage id="5010" type="CS_SEND_USER_BEHAVIOR_HELP_WINDOW" name="CSUserBehaviorHelpWindowRequest" comment="帮助窗口用户行为采集">
-		<List name="holdTimeList" type="HoldTimeVO" comment="停留时间数据包">
-			<attribute name="holdTime" type="int" comment="页面停留时间"/>
+			类型
+			0:打开关闭主界面
+			1:打开关闭悬浮穿
+			2:打开关闭设置面板
+			3:打开关闭网页截图任务窗
+			4:打开关闭关于窗口
+			5:打开关闭帮助窗口
+			6:打开关闭屏幕取色
+			7:打开关闭网页截图色彩分析
+			8:打开关闭url监听
+			9:打开关闭新闻广播窗口
+			10:打开关闭软件本身
+			" />
+			<attribute name="duration" type="int" comment="开启的持续时间" />
+			<attribute name="timeStamp" type="longstring" comment="打开本功能的当前本地时间" />
 		</List>
-		<attribute name="checkLaunch" type="byte" comment="是否开软件的时候启动帮助窗口,1:开启,0:不开启"/>
-		<attribute name="timeStamp" type="longstring" comment="当前本地时间"/>
-		<attribute name="macId" type="longstring" comment="用户mac地址"/>
+
+		<!--主界面用户行为采集 -->
+		<List name="mainWindowList" type="MainWindowNetVO" comment="主界面用户行为采集">
+			<attribute name="type" type="short" comment="
+			类型
+			0:点击打开文件~
+			1:保存项目文件(无图)~
+			2:保存项目文件(分析中)~
+			3:保存项目文件(有图)~
+			4:保存项目文件(保存成功)~
+			5:保存图片快照(无图)~
+			6:保存图片快照(分析中)~
+			7:保存图片快照(有图)~
+			8:保存图片快照(保存成功)~
+			9:屏幕截图~
+			10:开启屏幕取色~
+			11:关闭屏幕取色~
+			12:开启网页截图分析~
+			13:关闭网页截图分析~
+			14:开启url监听~
+			15:关闭url监听~
+			16:打开图片~
+			17:打开项目~
+			18:点击放大~
+			19:点击缩小~
+			20:点击分析(无图)~
+			21:点击分析(有图)~
+			22:点击删除~
+			23:点击添加颜色~
+			24:点击编辑颜色~
+			25:点击导出aco色板(无色板)~
+			26:点击导出aco色板(有色板)~
+			27:点击导出aco色板(导出完成)~
+			28:点击导出ase色板(无色板)~
+			29:点击导出ase色板(有色板)~
+			30:点击导出ase色板(导出完成)~
+			31:点击了新闻广播
+			32:点击了啤酒图标
+			33:点击了捐款大按钮
+			34:在分析过程中载入了图片
+			35:在分析过程中载入了CCB
+			" />
+			<attribute name="timeStamp" type="longstring" comment="当前本地时间" />
+		</List>
+
+		<!--悬浮窗用户行为采集 -->
+		<List name="suspensionWindowList" type="SuspensionWindowNetVO" comment="悬浮窗用户行为采集">
+			<attribute name="type" type="short" comment="
+			类型
+			0:点击开始加载
+			1:点击暂停加载
+			2:点击截图
+			3:点击取色开
+			4:点击取色关
+			5:点击web色彩分析开
+			6:点击web色彩分析关
+			7:点击url监听开
+			8:点击url监听关
+			" />
+			<attribute name="timeStamp" type="longstring" comment="当前本地时间" />
+		</List>
+
+		<!--设置面板用户行为采集 -->
+		<List name="settingWindowList" type="SettingWindowNetVO" comment="设置面板用户行为采集">
+			<attribute name="launchAfterBoot" type="byte" comment="开机启动，0关闭，1开启" />
+			<attribute name="defaultPath" type="longstring" comment="默认保存路径" />
+			<attribute name="colorType" type="byte" comment="取色类型，0:hex,1:#+hex,2:rgb" />
+			<attribute name="language" type="longstring" comment="语言" />
+			<attribute name="loadOverTime" type="int" comment="加载超时时间" />
+			<attribute name="loadRefreshTime" type="int" comment="加载刷新时间" />
+			<attribute name="colorBeeLevel" type="short" comment="蜂巢级别" />
+			<attribute name="colorBeeSize" type="short" comment="蜂巢尺寸" />
+			<attribute name="paletteHueLevel" type="short" comment="色板色相级别" />
+			<attribute name="paletteSaturationLevel" type="short" comment="色板饱和度级别" />
+			<attribute name="paletteBrightnessLevel" type="short" comment="色板明度级别" />
+			<attribute name="timeStamp" type="longstring" comment="当前本地时间" />
+			<attribute name="isChangedDefaultPath" type="byte" comment="是否改变了默认路径，0为否，1为是" />
+		</List>
+
+		<!-- 0:点击第1个人~ 1:点击第2个人~ 2:点击第3个人~ 3:点击第4个人~ -->
+		<List name="aboutWindowList" type="AboutWindowNetVO" comment="关于面板用户行为采集">
+			<attribute name="type" type="short" comment="
+			类型	
+			0:点击第1个人
+			1:点击第2个人
+			2:点击第3个人
+			3:点击第4个人" />
+			<attribute name="state" type="byte" comment="0:点击头像，1:点击微博链接" />
+			<attribute name="timeStamp" type="longstring" comment="当前本地时间" />
+		</List>
+
+		<!--帮助页面用户行为采集~ -->
+		<List name="helpWindowList" type="HelpWindowNetVO" comment="帮助页面用户行为采集">
+			<attribute name="holdTime" type="longstring" comment="帮助页面每页的停留时间数据包，下划线分离每次的数值" />
+			<attribute name="checkLaunch" type="byte" comment="是否开软件的时候启动帮助窗口,1:开启,0:不开启" />
+			<attribute name="timeStamp" type="longstring" comment="当前本地时间" />
+		</List>
+
+		<!--网页截图窗体用户行为采集~ 0:点击正在下载tab~ 1:点击已完成tab~ 2:点击失败tab~ 3:点击开始~ 4:点击暂停~ 5:删除正在下载~ 6:删除已完成~ 7:删除失败~ 8:刷新正在下载~ 9:刷新已完成~ 10:刷新失败~ -->
+		<List name="webshotWindowList" type="WebshotWindowNetVO" comment="网页截图窗体用户行为采集">
+			<attribute name="type" type="short" comment="
+			类型
+			0:点击正在下载tab
+			1:点击已完成tab
+			2:点击失败tab
+			3:点击开始
+			4:点击暂停
+			5:删除正在下载
+			6:删除已完成
+			7:删除失败
+			8:刷新正在下载
+			9:刷新已完成
+			10:刷新失败
+			" />
+			<attribute name="timeStamp" type="longstring" comment="当前本地时间" />
+		</List>
+
+		<!--网页截图用户行为采集~ -->
+		<List name="webshotList" type="WebshotNetVO" comment="网页截图用户行为采集">
+			<attribute name="maxTaskNum" type="short" comment="最大网页截图任务数量" />
+			<attribute name="timeStamp" type="longstring" comment="当前本地时间" />
+		</List>
+		<!--新闻广播窗口用户行为采集~ -->
+		<List name="broadCastList" type="BroadCastNetVO" comment="新闻广播窗口用户行为采集,打开了哪个guid新闻对应的网页了">
+			<attribute name="boradCastGuid" type="int" comment="新闻对应的guid" />
+			<attribute name="timeStamp" type="longstring" comment="当前本地时间" />
+		</List>
+		<attribute name="macId" type="longstring" comment="用户mac地址" />
+		<attribute name="logOffTimeStamp" type="longstring" comment="本次关闭的本地时间" />
+		<attribute name="isPrevious" type="byte" comment="是否是上次退出的，0为不是上次退出（即本次退出），1为是上次退出的结果" />
 	</sendMessage>
-	
-	<!--网页截图窗体用户行为采集~
-		0:点击正在下载tab~
-		1:点击已完成tab~
-		2:点击失败tab~
-		3:点击开始~
-		4:点击暂停~
-		5:删除正在下载~
-		6:删除已完成~
-		7:删除失败~
-		8:刷新正在下载~
-		9:刷新已完成~
-		10:刷新失败~
-	-->
-	<sendMessage id="5012" type="CS_SEND_USER_BEHAVIOR_WEBSHOT_WINDOW" name="CSUserBehaviorWebshotWindowRequest" comment="网页截图窗体用户行为采集">
-		<attribute name="type" type="short" comment="
-		类型
-		0:点击正在下载tab
-		1:点击已完成tab
-		2:点击失败tab
-		3:点击开始
-		4:点击暂停
-		5:删除正在下载
-		6:删除已完成
-		7:删除失败
-		8:刷新正在下载
-		9:刷新已完成
-		10:刷新失败
-		"
-		/>
-		<attribute name="timeStamp" type="longstring" comment="当前本地时间"/>
-		<attribute name="macId" type="longstring" comment="用户mac地址"/>
-	</sendMessage>
-	
-	<!--网页截图用户行为采集~-->
-	<sendMessage id="5014" type="CS_SEND_USER_BEHAVIOR_WEBSHOT" name="CSUserBehaviorWebshotRequest" comment="网页截图用户行为采集">
-		<attribute name="maxTaskNum" type="short" comment="最大网页截图任务数量"/>
-		<attribute name="timeStamp" type="longstring" comment="当前本地时间"/>
-		<attribute name="macId" type="longstring" comment="用户mac地址"/>
-	</sendMessage>
-	
-	<!--新闻广播窗口用户行为采集~-->
-	<sendMessage id="5016" type="CS_SEND_USER_BEHAVIOR_BROADCAST" name="CSUserBehaviorBroadCastRequest" comment="新闻广播窗口用户行为采集,打开了哪个guid新闻对应的网页了">
-		<attribute name="boradCastGuid" type="int" comment="新闻对应的guid"/>
-		<attribute name="timeStamp" type="longstring" comment="当前本地时间"/>
-		<attribute name="macId" type="longstring" comment="用户mac地址"/>
-	</sendMessage>
+
+	<backMessage id="5001" type="SC_SEND_USER_BEHAVIOR" name="SCUserBehaviorRequest" comment="全部用户行为的采集返回">
+		<attribute name="isSuccess" type="byte" comment="1:成功，其他为失败" />
+	</backMessage>
 </root>
