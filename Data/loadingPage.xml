@@ -2,14 +2,14 @@
 <root>
 	<sendMessage id="4000" type="CS_GET_LOADING_PAGE" name="CSRequestLoadingPage" comment="客户端请求获得加载页面的每日一句语言库">
 		<List name="csLangList" type="LangNameNetVO" comment="当前拥有的语言库">
-			<attribute name="langName" type="longstring" comment="语言名"/>
+			<attribute name="langName" type="longstring"  comment="语言名"/>
 		</List>
 	</sendMessage>
 	
 	<backMessage id="4001" type="SC_SEND_LOADING_PAGE" name="SCResponeLoadingPage" comment="服务器发送给客户端加载页面的每日一句语言库">
 		<List name="scLangList" type="LangContextNetVO" comment="当前拥有的语言库">
 			<attribute name="langName" type="longstring" comment="语言名，通过这个来分组"/>
-			<attribute name="index" type="byte" comment="当前内容在所在语言里的索引"/>
+			<attribute name="index" type="byte" comment="当前内容在所在语言里的索引" />
 			<attribute name="langContent" type="longstring" comment="语言的内容"/>
 		</List>
 	</backMessage>

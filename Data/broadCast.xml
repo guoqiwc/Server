@@ -1,30 +1,38 @@
-<!--60000打头，新闻广播-->
+<!--60000打头，新闻广播 -->
 <root>
 	<sendMessage id="6000" type="CS_GET_BROADCAST" name="CSRequestBroadCast" comment="请求获取广播信息">
 		<List name="csBroadCastList" type="BroadCastTimeStampNetVO" comment="当前的广播记录内容">
-			<attribute name="iteration " type="int" comment="上次更新的迭代号儿"/>
-			<attribute name="langName" type="longstring" comment="语言名"/>
-		</List>	
-	</sendMessage>
-	
-	<backMessage id="6001" type="SC_SEND_BROADCAST" name="SCResponeBroadCast" comment="服务器返回广播信息">
-	
-		<List name="scTimeStampList" type="BroadCastTimeStampNetVO" comment="服务器返回的广播标签">
-			<attribute name="iteration" type="int" comment="上次更新的迭代号儿"/>
-			<attribute name="langName" type="longstring" comment="语言名"/>
+			<attribute name="iteration " type="int" comment="上次更新的迭代号儿" />
+			<attribute name="langName" type="longstring" comment="语言名" />
 		</List>
-		
+		<List name="csCurrentHas" type="CSCurrentHasBroadNetVO" comment="当前拥有的新闻的guid列表">
+			<attribute name="guid" type="int" comment="用来标识词条数据唯一性的" />
+		</List>
+		<attribute name="isDebug" type="byte" comment="1为是，0为否。1的时候把未生效的也发给我，0只发送已经生效的" />
+	</sendMessage>
+
+	<backMessage id="6001" type="SC_SEND_BROADCAST" name="SCResponeBroadCast" comment="服务器返回广播信息">
+
+		<List name="scTimeStampList" type="BroadCastTimeStampNetVO" comment="服务器返回的广播标签">
+			<attribute name="iteration" type="int" comment="上次更新的迭代号儿" />
+			<attribute name="langName" type="longstring" comment="语言名" />
+		</List>
+
 		<List name="scBroadCastList" type="SCBroadCastContextNetVO" comment="服务器返回的广播内容">
-			<attribute name="guid" type="int" comment="用来标识词条数据唯一性的"/>
-			<attribute name="langName" type="longstring" comment="语言名，通过这个来分组"/>
-			<attribute name="iteration" type="byte" comment="当前内容在所在语言里的迭代号，从1开始。同时按照时间顺序递增。"/>
-			<attribute name="title" type="longstring" comment="广播标题"/>
-			<attribute name="date" type="longstring" comment="新闻日期"/>
-			<attribute name="imageUrl" type="longstring" comment="图标地址"/>
-			<attribute name="imageWidth" type="short" comment="图片宽度"/>
-			<attribute name="imageHeight" type="short" comment="图片高度"/>
-			<attribute name="context" type="longstring" comment="广播内容"/>
-			<attribute name="link" type="longstring" comment="当前的内容的超链接"/>
+			<attribute name="guid" type="int" comment="用来标识词条数据唯一性的" />
+			<attribute name="langName" type="longstring" comment="语言名，通过这个来分组" />
+			<attribute name="iteration" type="byte" comment="当前内容在所在语言里的迭代号，从1开始。同时按照时间顺序递增。" />
+			<attribute name="title" type="longstring" comment="广播标题" />
+			<attribute name="date" type="longstring" comment="新闻日期" />
+			<attribute name="imageUrl" type="longstring" comment="图标地址" />
+			<attribute name="imageWidth" type="short" comment="图片宽度" />
+			<attribute name="imageHeight" type="short" comment="图片高度" />
+			<attribute name="context" type="longstring" comment="广播内容" />
+			<attribute name="link" type="longstring" comment="当前的内容的超链接" />
+		</List>
+
+		<List name="needDeleteList" type="SCNeedDeleteBroadNetVO" comment="需要删除的新闻的guid列表">
+			<attribute name="guid" type="int" comment="用来标识词条数据唯一性的" />
 		</List>
 	</backMessage>
 </root>
