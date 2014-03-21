@@ -27,6 +27,23 @@ class Broadcast implements Handler {
 		$sql .= "(`language` = '$_language' AND `time` > '$_version' AND is_valid=1)";
 		$sql .= "ORDER BY `language` DESC, `time` DESC;";
 		$result = $mysql->query ( $sql );
+		
+		$needDeleteList = array ();
+		if ($this->package->getIsDebug () != 1) {
+			// 检查是否有需要删除的信息
+			$list = $this->package->getCsCurrentHas ();
+			// 遍历已有新闻列表
+			for($index = 0; $index < count ( $list ) - 1; ++ $index) {
+				$guid = $list [$index]->getGuid ();
+				$sql = "SELECT id FROM t_broadcast WHERE id=$guid AND is_valid=0;";
+				$result = $mysql->query ( $sql );
+				if ($result->num_rows > 0) {
+					$row = $result->fetch_row ();
+					$needDeleteList [] = $row [0];
+				}
+			}
+		}
+		
 		// 开始攒包
 		$this->package = new SCResponeBroadCastMessage ();
 		$_scTimeStampList = array ();
@@ -58,28 +75,13 @@ class Broadcast implements Handler {
 		$this->package->setScTimeStampList ( $_scTimeStampList );
 		$this->package->setScBroadCastList ( $_scBroadCastList );
 		
-		$needDeleteList = array ();
-		if ($this->package->getIsDebug () != 1) {
-			// 检查是否有需要删除的信息
-			$list = $this->package->getCsCurrentHas ();
-			// 遍历已有新闻列表
-			for($index = 0; $index < count ( $list ) - 1; ++ $index) {
-				$guid = $list [$index]->getGuid ();
-				$sql = "SELECT id FROM t_broadcast WHERE id=$guid AND is_valid=0;";
-				$result = $mysql->query ( $sql );
-				if ($result->num_rows > 0) {
-					$row = $result->fetch_row ();
-					$needDeleteList [] = $row [0];
-				}
-			}
-		}
-		$_needDeleteList = array ();
+		$_temp = array ();
 		for($index = 0; $index < count ( $needDeleteList ) - 1; ++ $index) {
 			$pb = new SCNeedDeleteBroadNetVO ();
-			$pb->setGuid ( $_needDeleteList [$index] );
-			array_push ( $_PBDelete, $pb );
+			$pb->setGuid ( $needDeleteList [$index] );
+			array_push ( $_temp, $pb );
 		}
-		$this->package->setNeedDeleteList ( $_needDeleteList );
+		$this->package->setNeedDeleteList ( $_temp );
 		$result->close ();
 		return $this->package->build ()->getByteArray ();
 	}

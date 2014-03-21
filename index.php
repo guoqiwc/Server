@@ -60,7 +60,7 @@ class EncryptUtil {
 	/**
 	 * 密码
 	 */
-	public static $password = "901230";
+	public static $password = "0a3d4m4b9h3hs0b3jvbm6t5kjv4h2a0h6n5j3m2u0j6j5nc6t39f7nv4ct667mv510cxjhgp02hmrkfvty2m869u6u7j0vh";
 	
 	/**
 	 * 加密函数
