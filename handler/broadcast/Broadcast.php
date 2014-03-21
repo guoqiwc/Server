@@ -33,7 +33,7 @@ class Broadcast implements Handler {
 			// 检查是否有需要删除的信息
 			$list = $this->package->getCsCurrentHas ();
 			// 遍历已有新闻列表
-			for($index = 0; $index < count ( $list ) - 1; ++ $index) {
+			for($index = 0; $index < count ( $list ); ++ $index) {
 				$guid = $list [$index]->getGuid ();
 				$sql = "SELECT id FROM t_broadcast WHERE id=$guid AND is_valid=0;";
 				$result = $mysql->query ( $sql );
@@ -76,7 +76,7 @@ class Broadcast implements Handler {
 		$this->package->setScBroadCastList ( $_scBroadCastList );
 		
 		$_temp = array ();
-		for($index = 0; $index < count ( $needDeleteList ) - 1; ++ $index) {
+		for($index = 0; $index < count ( $needDeleteList ); ++ $index) {
 			$pb = new SCNeedDeleteBroadNetVO ();
 			$pb->setGuid ( $needDeleteList [$index] );
 			array_push ( $_temp, $pb );
