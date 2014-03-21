@@ -35,10 +35,10 @@ class Broadcast implements Handler {
 			// 遍历已有新闻列表
 			for($index = 0; $index < count ( $list ); ++ $index) {
 				$guid = $list [$index]->getGuid ();
-				$sql = "SELECT id FROM t_broadcast WHERE id=$guid AND is_valid=0;";
-				$result = $mysql->query ( $sql );
-				if ($result->num_rows > 0) {
-					$row = $result->fetch_row ();
+				$sql1 = "SELECT id FROM t_broadcast WHERE id=$guid AND is_valid=0;";
+				$result1 = $mysql->query ( $sql1 );
+				if ($result1->num_rows > 0) {
+					$row = $result1->fetch_row ();
 					$needDeleteList [] = $row [0];
 				}
 			}
