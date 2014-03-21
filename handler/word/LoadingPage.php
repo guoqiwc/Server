@@ -34,7 +34,7 @@ class LoadingPage implements Handler {
 		}
 		$this->package->setScLangList ( $_scLangList );
 		$result->close ();
-		echo $this->package->build ()->getByteArray();
+		return $this->package->build ()->getByteArray ();
 	}
 }
 

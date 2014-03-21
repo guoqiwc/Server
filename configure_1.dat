@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <version>内测版 Alhpa 2.3.0</version>
+  <baseRes>data/base/</baseRes>
+  <languageData>langData.dat</languageData>
+  <serverList>
+    <server ip="http://www.symenty.com/Server/index.php" type="httpServer" name="log"/>
+  </serverList>
+  <resourcesList>
+    <resource key="about.pack;base" type="packData"/>
+    <resource key="icon.pack;base" type="packData"/>
+    <resource key="main.pack;base" type="packData"/>
+    <resource key="other.pack;base" type="packData"/>
+    <resource key="mouse.pack;base" type="packData"/>
+    <resource key="normal.pack;base" type="packData"/>
+    <resource key="suspension.pack;base" type="packData"/>
+    <resource key="help.pack;base" type="packData"/>
+    <resource key="webTask.pack;base" type="packData"/>
+    <resource key="broadCast.pack;base" type="packData"/>
+  </resourcesList>
+  <langResourcesList>
+    <resource key="langData.dat;language" type="byte"/>
+    <resource key="fontData.dat;language" type="byte"/>
+  </langResourcesList>
+</Configuration>

@@ -10,6 +10,18 @@ class ByteTools {
 			$this->byteArray = str_split ( $bin );
 		}
 	}
+	function get($index) {
+		$value = $this->byteArray [$index];
+		$data = unpack ( "c", $value );
+		return $data [1];
+	}
+	function set($index, $value) {
+		$val = intval ( $value );
+		$this->byteArray [$index] = ($val & 0xff);
+	}
+	function getLength() {
+		return count ( $this->byteArray );
+	}
 	function setPosition($position) {
 		$count = count ( $this->byteArray );
 		if ($count < $position) {
@@ -45,6 +57,13 @@ class ByteTools {
 		}
 		return $str;
 	}
+	function readString($length) {
+		$str = "";
+		for($index = 0; $index < $length; ++ $index) {
+			$str .= ($this->byteArray [$this->position ++]);
+		}
+		return $str;
+	}
 	function writeByte($value) {
 		$val = intval ( $value );
 		$this->byteArray [$this->position ++] = ($val & 0xff);
@@ -64,6 +83,11 @@ class ByteTools {
 	function writeLongString($string) {
 		$length = strlen ( $string );
 		$this->writeShort ( $length );
+		for($index = 0; $index < $length; ++ $index) {
+			$this->byteArray [$this->position ++] = ord ( $string [$index] );
+		}
+	}
+	function writeString($length, $string) {
 		for($index = 0; $index < $length; ++ $index) {
 			$this->byteArray [$this->position ++] = ord ( $string [$index] );
 		}

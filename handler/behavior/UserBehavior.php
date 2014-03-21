@@ -121,8 +121,7 @@ class UserBehavior implements Handler {
 		$sql = "";
 		$this->package = new SCUserBehaviorRequestMessage ();
 		$this->package->setIsSuccess ( 1 );
-		echo $this->package->build ()->getByteArray ();
-		return;
+		return $this->package->build ()->getByteArray ();
 	}
 }
 ?>

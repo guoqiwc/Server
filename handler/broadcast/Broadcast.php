@@ -81,7 +81,7 @@ class Broadcast implements Handler {
 		}
 		$this->package->setNeedDeleteList ( $_needDeleteList );
 		$result->close ();
-		echo $this->package->build ()->getByteArray ();
+		return $this->package->build ()->getByteArray ();
 	}
 }
 ?>
