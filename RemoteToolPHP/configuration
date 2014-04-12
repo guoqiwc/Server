@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Configuration>
   <packagePath>frame.protocol</packagePath>
-  <classASPath>file:///D:/php/Server/message/</classASPath>
-  <targetPath>file:///D:/php/Server/Data/</targetPath>
+  <classASPath>file:///D:/phpStudy/WWW/Server/message/</classASPath>
+  <targetPath>file:///D:/phpStudy/WWW/Server/Data/</targetPath>
 </Configuration>

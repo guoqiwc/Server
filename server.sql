@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50532
 File Encoding         : 65001
 
-Date: 2014-03-21 15:27:47
+Date: 2014-03-25 23:54:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -45,11 +45,13 @@ CREATE TABLE `t_all_window_b` (
   `duration` int(10) DEFAULT NULL,
   `time` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '时间戳',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of t_all_window_b
 -- ----------------------------
+INSERT INTO `t_all_window_b` VALUES ('1', '106.38.255.127', '8C-A9-82-B6-6D-C6', '5', '2762', '144f861e1b2');
+INSERT INTO `t_all_window_b` VALUES ('2', '106.38.255.127', '8C-A9-82-B6-6D-C6', '1', '23771', '144f861eccf');
 
 -- ----------------------------
 -- Table structure for t_broadcast
@@ -70,16 +72,14 @@ CREATE TABLE `t_broadcast` (
   `is_valid` tinyint(1) unsigned DEFAULT '1' COMMENT '当前消息是否有效',
   PRIMARY KEY (`id`),
   KEY `index_language_time` (`language`,`time`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of t_broadcast
 -- ----------------------------
-INSERT INTO `t_broadcast` VALUES ('1', 'zh-CN', '0', '1', '第一张图片', '?name=1.jpg', '109', '119', 0xE68891E698AFE7ACACE4B880E5BCA0E59BBEE78987E3808254696D65E6898DE698AFE79C9FE6ADA3E79A84E8BFADE4BBA3E58FB7E38082E588ABE7AEA1696E646578EFBC81EFBC81, 'http://www.symenty.com', '2014.9.9', '1');
-INSERT INTO `t_broadcast` VALUES ('2', 'en-US', '0', '1', 'SB Guolaoshi', '?name=1.jpg', '109', '119', 0x4920616D204F6E65205069632E204655434B43594F55EFBC81, 'http://www.symenty.com', '2014.9.10', '1');
-INSERT INTO `t_broadcast` VALUES ('3', 'zh-CN', '1', '2', '第二张图片', '?name=2.jpg', '153', '99', 0xE68891E698AFE7ACACE4BA8CE5BCA0E59BBEE78987E38082, 'http://www.symenty.com', '2014.9.11', '1');
-INSERT INTO `t_broadcast` VALUES ('4', 'en-US', '1', '2', 'Fuck LYJ', '?name=2.jpg', '153', '99', 0x4920616D2054776F205069632E204920616D20746865204B494E47EFBC81, 'http://www.symenty.com', '2014.9.12', '1');
-INSERT INTO `t_broadcast` VALUES ('5', 'en-US', '3', '3', 'SB CYOU', '?name=2.jpg', '153', '99', 0x43594F55E3808257514E4D4C4742EFBC81, 'http://www.symenty.com', '2014.9.13', '1');
+INSERT INTO `t_broadcast` VALUES ('1', 'zh-CN', '0', '1', '感谢梦想让生活充满期待', '?name=1.jpg', '109', '119', 0xE5A5BDE4B985E4B88DE8A781EFBC8CE8B79DE7A6BBE4B88AE4B880E4B8AAE78988E69CACE79A84E69BB4E696B0E5B7B2E7BB8FE8BF87E4BA86343330E5A4A9E38082E78EB0E59CA8EFBC8CE68891E4BBACE58F88E9878DE696B0E689ACE5B886E8B5B7E888AAEFBC8CE58D96E587BAE8BFBDE98090E6A2A6E683B3E79A84E8849AE6ADA57E, 'http://www.fancynode.com/colorcube/process.html', '2014/3/25', '1');
+INSERT INTO `t_broadcast` VALUES ('4', 'en-US', '1', '1', 'Fuck LYJ', '?name=2.jpg', '153', '99', 0x4920616D2054776F205069632E204920616D20746865204B494E47EFBC81, 'http://www.symenty.com', '2014.9.12', '0');
+INSERT INTO `t_broadcast` VALUES ('5', 'en-US', '2', '2', 'TEST', '?name=2.jpg', '153', '99', 0x74657374, 'http://www.symenty.com', '2014.3.25', '0');
 
 -- ----------------------------
 -- Table structure for t_broadcast_b
@@ -110,7 +110,7 @@ CREATE TABLE `t_error` (
   `os` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `version` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `time` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `得逼` text COLLATE utf8_bin COMMENT '错误信息',
+  `error_message` text COLLATE utf8_bin COMMENT '错误信息',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -130,11 +130,12 @@ CREATE TABLE `t_help_window_b` (
   `time` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `hold_time_list` text COLLATE utf8_bin COMMENT '字符串形式的列表',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of t_help_window_b
 -- ----------------------------
+INSERT INTO `t_help_window_b` VALUES ('1', '106.38.255.127', '8C-A9-82-B6-6D-C6', '1', '144f861ed3f', 0x373835395F305F305F30);
 
 -- ----------------------------
 -- Table structure for t_loading_page
@@ -177,11 +178,13 @@ CREATE TABLE `t_login` (
   `login` tinyint(1) unsigned DEFAULT NULL COMMENT '1为登陆 0为退出',
   PRIMARY KEY (`id`),
   KEY `index_m_t_l` (`mac`,`time`,`login`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of t_login
 -- ----------------------------
+INSERT INTO `t_login` VALUES ('1', '1', '8C-A9-82-B6-6D-C6', '106.38.255.127', '', '', '144f86249ac', '0');
+INSERT INTO `t_login` VALUES ('2', '1', '8C-A9-82-B6-6D-C6', '106.38.255.127', 'Windows 8', '内测版 Alhpa 2.3.0', '144f9f23c88', '1');
 
 -- ----------------------------
 -- Table structure for t_main_window_b
@@ -199,6 +202,24 @@ CREATE TABLE `t_main_window_b` (
 -- ----------------------------
 -- Records of t_main_window_b
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for t_menu_list_b
+-- ----------------------------
+DROP TABLE IF EXISTS `t_menu_list_b`;
+CREATE TABLE `t_menu_list_b` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ip` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `mac` varchar(60) COLLATE utf8_bin DEFAULT NULL,
+  `type` tinyint(5) unsigned DEFAULT NULL COMMENT '类型',
+  `time` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '时间戳',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+-- Records of t_menu_list_b
+-- ----------------------------
+INSERT INTO `t_menu_list_b` VALUES ('1', '106.38.255.127', '8C-A9-82-B6-6D-C6', '1', '144f8624922');
 
 -- ----------------------------
 -- Table structure for t_setting_window_b
@@ -246,6 +267,25 @@ CREATE TABLE `t_suspension_window_b` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for t_take_color_b
+-- ----------------------------
+DROP TABLE IF EXISTS `t_take_color_b`;
+CREATE TABLE `t_take_color_b` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ip` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `mac` varchar(60) COLLATE utf8_bin DEFAULT NULL,
+  `take_color_times` int(10) unsigned DEFAULT NULL COMMENT '类型',
+  `time` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '时间戳',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+-- Records of t_take_color_b
+-- ----------------------------
+INSERT INTO `t_take_color_b` VALUES ('1', '106.38.255.127', '8C-A9-82-B6-6D-C6', '3', '144f86249ac');
+INSERT INTO `t_take_color_b` VALUES ('2', '106.38.255.127', '8C-A9-82-B6-6D-C6', '3', '144f9f347ac');
+
+-- ----------------------------
 -- Table structure for t_title
 -- ----------------------------
 DROP TABLE IF EXISTS `t_title`;
@@ -281,11 +321,12 @@ CREATE TABLE `t_webshot_b` (
   `max_task_num` int(10) unsigned DEFAULT NULL COMMENT '类型',
   `time` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '时间戳',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of t_webshot_b
 -- ----------------------------
+INSERT INTO `t_webshot_b` VALUES ('1', '106.38.255.127', '8C-A9-82-B6-6D-C6', '1', '144f9f256e2');
 
 -- ----------------------------
 -- Table structure for t_webshot_window_b

@@ -13,7 +13,7 @@ class UserBehavior implements Handler {
 		$login = 0; // 1为登陆 0为退出
 		$mysql = Mysql::getInstence ();
 		
-		// 1.检查是否为重复提交的数据
+		// -1.检查是否为重复提交的数据
 		$sql = "SELECT * FROM t_login WHERE mac = '$mac' AND time = '$time' AND login = 0;";
 		$result = $mysql->query ( $sql );
 		if ($result->num_rows > 0) {
@@ -24,7 +24,11 @@ class UserBehavior implements Handler {
 			return;
 		}
 		$sql = "";
-		// TODO 2.所有窗口行为
+		// TODO 0.登出记录
+		$sql = "INSERT INTO `t_login`(user_id,mac,ip,os,version,time,login) VALUES ('1', '$mac', '$ip', '', '', '$time', '$login');";
+		$mysql->insert ( $sql );
+		$sql = "";
+		// TODO 1.所有窗口行为
 		$list = $this->package->getDurationList ();
 		for($index = 0; $index < count ( $list ); ++ $index) {
 			$type = $list [$index]->getType ();
@@ -34,7 +38,7 @@ class UserBehavior implements Handler {
 			$mysql->insert ( $sql );
 		}
 		$sql = "";
-		// TODO 3.主界面用户行为采集
+		// TODO 2.主界面用户行为采集
 		$list = $this->package->getMainWindowList ();
 		for($index = 0; $index < count ( $list ); ++ $index) {
 			$type = $list [$index]->getType ();
@@ -43,7 +47,7 @@ class UserBehavior implements Handler {
 			$mysql->insert ( $sql );
 		}
 		$sql = "";
-		// TODO 4.悬浮窗用户行为采集
+		// TODO 3.悬浮窗用户行为采集
 		$list = $this->package->getSuspensionWindowList ();
 		for($index = 0; $index < count ( $list ); ++ $index) {
 			$type = $list [$index]->getType ();
@@ -52,7 +56,7 @@ class UserBehavior implements Handler {
 			$mysql->insert ( $sql );
 		}
 		$sql = "";
-		// TODO 5.设置面板用户行为采集
+		// TODO 4.设置面板用户行为采集
 		$list = $this->package->getSettingWindowList ();
 		for($index = 0; $index < count ( $list ); ++ $index) {
 			$timeStamp = $list [$index]->getTimeStamp ();
@@ -72,7 +76,7 @@ class UserBehavior implements Handler {
 			$mysql->insert ( $sql );
 		}
 		$sql = "";
-		// TODO 6.关于
+		// TODO 5.关于
 		$list = $this->package->getAboutWindowList ();
 		for($index = 0; $index < count ( $list ); ++ $index) {
 			$type = $list [$index]->getType ();
@@ -82,7 +86,7 @@ class UserBehavior implements Handler {
 			$mysql->insert ( $sql );
 		}
 		$sql = "";
-		// TODO 7.帮助页面用户行为采集
+		// TODO 6.帮助页面用户行为采集
 		$list = $this->package->getHelpWindowList ();
 		for($index = 0; $index < count ( $list ); ++ $index) {
 			$checkLaunch = $list [$index]->getCheckLaunch ();
@@ -92,7 +96,7 @@ class UserBehavior implements Handler {
 			$mysql->insert ( $sql );
 		}
 		$sql = "";
-		// TODO 8.网页截图窗体用户行为采集
+		// TODO 7.网页截图窗体用户行为采集
 		$list = $this->package->getWebshotWindowList ();
 		for($index = 0; $index < count ( $list ); ++ $index) {
 			$type = $list [$index]->getType ();
@@ -101,7 +105,7 @@ class UserBehavior implements Handler {
 			$mysql->insert ( $sql );
 		}
 		$sql = "";
-		// TODO 9.网页截图用户行为采集
+		// TODO 8.网页截图用户行为采集
 		$list = $this->package->getWebshotList ();
 		for($index = 0; $index < count ( $list ); ++ $index) {
 			$maxTaskNum = $list [$index]->getMaxTaskNum ();
@@ -110,7 +114,7 @@ class UserBehavior implements Handler {
 			$mysql->insert ( $sql );
 		}
 		$sql = "";
-		// TODO 10.广播
+		// TODO 9.广播
 		$list = $this->package->getBroadCastList ();
 		for($index = 0; $index < count ( $list ); ++ $index) {
 			$boradCastGuid = $list [$index]->getBoradCastGuid ();
@@ -118,6 +122,20 @@ class UserBehavior implements Handler {
 			$sql = "INSERT INTO `t_broadcast_b`(ip,mac,boradcast_guid,time) VALUES ('$ip','$mac','$boradCastGuid','$timeStamp');";
 			$mysql->insert ( $sql );
 		}
+		$sql = "";
+		// TODO 10.菜单
+		$list = $this->package->getMenuList ();
+		for($index = 0; $index < count ( $list ); ++ $index) {
+			$type = $list [$index]->getType ();
+			$timeStamp = $list [$index]->getTimeStamp ();
+			$sql = "INSERT INTO `t_menu_list_b`(ip,mac,type,time) VALUES ('$ip','$mac','$type','$timeStamp');";
+			$mysql->insert ( $sql );
+		}
+		$sql = "";
+		$times = $this->package->getTakeColorTimes ();
+		// TODO 11.屏幕取色
+		$sql = "INSERT INTO `t_take_color_b`(ip,mac,take_color_times,time) VALUES ('$ip' , '$mac', $times , '$time');";
+		$mysql->insert ( $sql );
 		$sql = "";
 		$this->package = new SCUserBehaviorRequestMessage ();
 		$this->package->setIsSuccess ( 1 );

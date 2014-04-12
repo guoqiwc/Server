@@ -19,15 +19,14 @@ class Broadcast implements Handler {
 		// 遍历语言数组
 		for($index = 0; $index < count ( $list ) - 1; ++ $index) {
 			$language = $list [$index]->getLangName ();
-			$time = $list [$index]->getIteration ();
-			$sql .= "(`language` = '$language' AND `time` > '$time' ) OR";
+			$_version = $list [$index]->getIteration ();
+			$sql .= "(`language` = '$language' AND `time` > '$_version' AND is_valid=1 ) OR";
 		}
 		$_language = $list [count ( $list ) - 1]->getLangName ();
 		$_version = $list [count ( $list ) - 1]->getIteration ();
 		$sql .= "(`language` = '$_language' AND `time` > '$_version' AND is_valid=1)";
 		$sql .= "ORDER BY `language` DESC, `time` DESC;";
-		$result = $mysql->query ( $sql );
-		
+		$newsResults = $mysql->query ( $sql );
 		$needDeleteList = array ();
 		if ($this->package->getIsDebug () != 1) {
 			// 检查是否有需要删除的信息
@@ -35,22 +34,22 @@ class Broadcast implements Handler {
 			// 遍历已有新闻列表
 			for($index = 0; $index < count ( $list ); ++ $index) {
 				$guid = $list [$index]->getGuid ();
-				$sql1 = "SELECT id FROM t_broadcast WHERE id=$guid AND is_valid=0;";
-				$result1 = $mysql->query ( $sql1 );
-				if ($result1->num_rows > 0) {
-					$row = $result1->fetch_row ();
+				$sql = "SELECT id FROM t_broadcast WHERE id=$guid AND is_valid=0;";
+				$result = $mysql->query ( $sql );
+				if ($result->num_rows > 0) {
+					$row = $result->fetch_row ();
 					$needDeleteList [] = $row [0];
 				}
+				$result->close ();
 			}
 		}
-		
 		// 开始攒包
 		$this->package = new SCResponeBroadCastMessage ();
 		$_scTimeStampList = array ();
 		$_scBroadCastList = array ();
 		$language = "";
-		for($index = 0; $index < $result->num_rows; ++ $index) {
-			$row = $result->fetch_row ();
+		for($index = 0; $index < $newsResults->num_rows; ++ $index) {
+			$row = $newsResults->fetch_row ();
 			// 递推获得最新语言的时间戳
 			if ($language == "" || $language != $row [1]) {
 				$language = $row [1];
@@ -82,7 +81,7 @@ class Broadcast implements Handler {
 			array_push ( $_temp, $pb );
 		}
 		$this->package->setNeedDeleteList ( $_temp );
-		$result->close ();
+		$newsResults->close ();
 		return $this->package->build ()->getByteArray ();
 	}
 }
